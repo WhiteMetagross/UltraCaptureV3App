@@ -41,7 +41,7 @@ The easiest way to set up the application is using the provided PowerShell scrip
 .\setup.ps1
 ```
 
-#### What the setup.ps1 Script Does.
+#### What the setup.ps1 Script Does:
 
 The `setup.ps1` PowerShell script automates the entire setup process for both backend and frontend:
 
@@ -88,7 +88,7 @@ Setup complete! You can now run .\start.ps1 to start the application.
 
 If you prefer to set up manually or encounter issues with the automated script, follow these steps.
 
-#### Backend Setup.
+#### Backend Setup:
 
 1. Navigate to the backend directory:
    ```bash
@@ -129,7 +129,7 @@ If you prefer to set up manually or encounter issues with the automated script, 
 
    The ONNX model should already be present in the `models/` directory. If not, contact the project maintainers.
 
-#### Frontend Setup.
+#### Frontend Setup:
 
 1. Navigate to the frontend directory:
    ```bash
@@ -151,7 +151,7 @@ Use the provided PowerShell script to start both servers:
 .\start.ps1
 ```
 
-#### What the start.ps1 Script Does.
+#### What the start.ps1 Script Does:
 
 The `start.ps1` PowerShell script launches both the backend and frontend servers simultaneously:
 
@@ -202,7 +202,7 @@ To stop the servers:
 
 If you prefer to start the servers manually:
 
-#### Start the Backend Server.
+#### Start the Backend Server:
 
 1. Navigate to the backend directory:
    ```bash
@@ -226,7 +226,7 @@ If you prefer to start the servers manually:
 
    The backend API will be available at http://localhost:5000.
 
-#### Start the Frontend Server.
+#### Start the Frontend Server:
 
 1. Open a new terminal window.
 

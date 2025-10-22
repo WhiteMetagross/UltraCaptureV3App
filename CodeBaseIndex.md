@@ -50,7 +50,7 @@ ProjectAAWebsite/
 
 ### Main Application Files:
 
-#### `frontend/src/App.tsx`
+#### `frontend/src/App.tsx`:
 The main React component containing the entire single-page application with four sections and retro/vintage aesthetic design:
 
 1. **Hero/Home Section:**
@@ -85,24 +85,24 @@ The main React component containing the entire single-page application with four
 - State management with React hooks.
 - Retro/vintage aesthetic: Amber color palette, Georgia serif font, 4px borders, box shadows, no rounded corners.
 
-#### `frontend/src/index.css`
+#### `frontend/src/index.css`:
 Global styles with Tailwind CSS directives:
 - Base Tailwind imports (`@tailwind base`, `@tailwind components`, `@tailwind utilities`).
 - CSS custom properties for theming.
 - Global resets and base styles.
 - Smooth scrolling behavior.
 
-#### `frontend/src/App.css`
+#### `frontend/src/App.css`:
 Application-specific styles:
 - Root container styling.
 
-#### `frontend/src/lib/utils.ts`
+#### `frontend/src/lib/utils.ts`:
 Utility functions:
 - `cn()`: Merges className strings using clsx and tailwind-merge for conditional styling.
 
 ### Configuration Files:
 
-#### `frontend/package.json`
+#### `frontend/package.json`:
 Frontend dependencies and scripts:
 - **Dependencies:** React, React DOM, Axios, Lucide React, Tailwind utilities.
 - **Dev Dependencies:** Vite, TypeScript, ESLint, Tailwind CSS, PostCSS.
@@ -111,18 +111,18 @@ Frontend dependencies and scripts:
   - `build`: Build for production.
   - `preview`: Preview production build.
 
-#### `frontend/tailwind.config.js`
+#### `frontend/tailwind.config.js`:
 Tailwind CSS configuration:
 - Content paths for purging unused styles.
 - Dark mode configuration (class-based).
 - Custom color palette (purple, blue, red shades).
 
-#### `frontend/vite.config.ts`
+#### `frontend/vite.config.ts`:
 Vite build tool configuration:
 - React plugin integration.
 - Build optimizations.
 
-#### `frontend/tsconfig.json`
+#### `frontend/tsconfig.json`:
 TypeScript compiler configuration:
 - Strict type checking.
 - JSX support for React.
@@ -132,7 +132,7 @@ TypeScript compiler configuration:
 
 ### API Server:
 
-#### `backend/app.py`
+#### `backend/app.py`:
 Flask application with ONNX Runtime CPU inference (no GPU required):
 
 **Endpoints:**
@@ -153,7 +153,7 @@ Flask application with ONNX Runtime CPU inference (no GPU required):
 
 ### Model Files:
 
-#### `backend/models/best_model.onnx`
+#### `backend/models/best_model.onnx`:
 ONNX exported model for CPU-based inference:
 - Model size: ~273MB.
 - Optimized for ONNX Runtime CPU inference.
@@ -161,7 +161,7 @@ ONNX exported model for CPU-based inference:
 - Output: CTC predictions for CAPTCHA text recognition.
 - Inference time: 30-100ms per image on modern CPUs.
 
-#### `backend/export_to_onnx.py`
+#### `backend/export_to_onnx.py`:
 Reference script to convert PyTorch model to ONNX format (for reference only):
 - Loads checkpoint from PyTorch model.
 - Exports to ONNX format for CPU inference.
@@ -170,13 +170,13 @@ Reference script to convert PyTorch model to ONNX format (for reference only):
 
 ### Configuration:
 
-#### `backend/config.json`
+#### `backend/config.json`:
 Model configuration:
 - **Data:** Image dimensions (64×256), charset (62 characters).
 - **Model:** Hidden size (512), attention heads (8), layers (4), dropout (0.1).
 - **Inference:** ONNX model path and inference settings.
 
-#### `backend/requirements.txt`
+#### `backend/requirements.txt`:
 Python dependencies for ONNX Runtime CPU inference:
 - Flask 3.0.0: Web framework.
 - Flask-CORS 4.0.0: Cross-origin resource sharing support.
