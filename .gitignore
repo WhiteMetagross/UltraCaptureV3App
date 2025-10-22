@@ -28,6 +28,7 @@ venv/
 ENV/
 env/
 .venv
+backend/ultracapturev3/
 
 # Node.js
 node_modules/
@@ -61,4 +62,7 @@ build/
 *.tmp
 *.temp
 .cache/
+
+# Large model files (use Git LFS or download separately)
+backend/models/best_model.onnx
 
