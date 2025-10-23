@@ -1,4 +1,4 @@
-# UltraCaptureV3 - Advanced CAPTCHA Recognition Desktop Application
+# UltraCaptureV3: Advanced CAPTCHA Recognition Desktop Application
 
 A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This desktop application provides a native, standalone interface for CAPTCHA text recognition with CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
 
@@ -6,20 +6,20 @@ A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolu
 
 ---
 
-## 🎯 Key Features
+## Key Features.
 
-- **High Accuracy**: Achieves **95.08% Character Accuracy** and **86.37% Sequence Accuracy** on test sets
-- **Advanced Architecture**: Hybrid CRNN combining ResNet-style CNN backbone, CBAM attention, Bi-LSTM, and Transformer Encoder
-- **CPU-Based Inference**: Uses ONNX Runtime for fast, optimized CPU inference (30-100ms per image) without GPU requirements
-- **Native Desktop Application**: Professional PySide6 interface with Fallout-themed design
-- **Fallout-Themed UI**: Unique retro aesthetic with green (#00FF41), purple (#9D4EDD), and blue (#0096FF) color palette
-- **Easy Setup**: Automated setup with PowerShell scripts for environment configuration
-- **Cross-Platform**: Works on Windows, macOS, and Linux with Python 3.11+
-- **Standalone Executable**: Can be packaged as a standalone .exe file for distribution without Python installation
+- **High Accuracy**: Achieves **95.08% Character Accuracy** and **86.37% Sequence Accuracy** on test sets.
+- **Advanced Architecture**: Hybrid CRNN combining ResNet-style CNN backbone, CBAM attention, Bi-LSTM, and Transformer Encoder.
+- **CPU-Based Inference**: Uses ONNX Runtime for fast, optimized CPU inference (30-100ms per image) without GPU requirements.
+- **Native Desktop Application**: Professional PySide6 interface with Fallout-themed design.
+- **Fallout-Themed UI**: Unique retro aesthetic with green (#00FF41), purple (#9D4EDD), and blue (#0096FF) color palette.
+- **Easy Setup**: Automated setup with PowerShell scripts for environment configuration.
+- **Cross-Platform**: Works on Windows, macOS, and Linux with Python 3.11+.
+- **Standalone Executable**: Can be packaged as a standalone .exe file for distribution without Python installation.
 
 ---
 
-## 📁 Project Structure
+## Project Structure.
 
 ```
 UltraCaptureV3/
@@ -73,15 +73,15 @@ UltraCaptureV3/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start.
 
 ### For End Users (Standalone Executable)
 
 If you want to use the standalone executable without Python installation:
 
-1. Build the executable using the build scripts (see [Distribution.md - Building from Source](Distribution.md#building-from-source))
-2. Extract the generated `UltraCaptureV3-Distribution.zip` file to your desired location
-3. Double-click `UltraCaptureV3.exe` to launch the application
+1. Build the executable using the build scripts (see [Distribution.md: Building from Source](Distribution.md#building-from-source)).
+2. Extract the generated `UltraCaptureV3-Distribution.zip` file to your desired location.
+3. Double-click `UltraCaptureV3.exe` to launch the application.
 
 **See [Distribution.md](Distribution.md) for detailed instructions and troubleshooting.**
 
@@ -100,21 +100,50 @@ If you want to use the standalone executable without Python installation:
 The application will launch with the Fallout-themed interface ready for CAPTCHA recognition.
 
 **Features:**
-- Drag-and-drop image upload or file browser selection
-- Real-time CAPTCHA prediction with inference timing
-- Four informative tabs: Home, About, Architecture, and Inference
-- Professional Fallout-themed interface with retro aesthetic
+- Drag-and-drop image upload or file browser selection.
+- Real-time CAPTCHA prediction with inference timing.
+- Four informative tabs: Home, About, Architecture, and Inference.
+- Professional Fallout-themed interface with retro aesthetic.
 
 **For detailed setup instructions, see [InstallationAndSetup.md](InstallationAndSetup.md).**
 
 ---
 
-## 🏗️ Model Architecture
+## Screenshots.
+
+### Home Tab
+![Home Tab](visuals/HomeTab.png)
+
+The main interface displays the project title, tagline, and key performance metrics in a professional Fallout-themed design with the signature green and purple color scheme.
+
+### About Tab: Project Overview
+![About Tab Overview](visuals/AboutTheProjectTab1.png)
+
+The About tab presents comprehensive project information including the CRNN architecture description and key features in an organized card-based layout.
+
+### About Tab: Performance Metrics
+![About Tab Metrics](visuals/AboutTheProjectTab2WithTheTrainingAndValidationGraphs.png)
+
+Performance metrics section displays validation and test set accuracies with visual graphs showing the model's training progress and performance over time.
+
+### Model Architecture
+![Model Architecture](visuals/ModelArchitectureTab.png)
+
+The architecture tab provides a detailed visual diagram of the hybrid CRNN model showing all components including the CNN backbone, attention mechanisms, LSTM, and transformer encoder.
+
+### Live Inference Demonstration
+![Inference Tab](visuals/LiveInferenceDemonstrationTab.png)
+
+The inference tab features an interactive drag-and-drop interface for uploading CAPTCHA images and displaying real-time predictions with inference timing information.
+
+---
+
+## Model Architecture.
 
 The model is a custom-built Convolutional Recurrent Neural Network (CRNN) that integrates multiple advanced concepts for maximum accuracy:
 
-- **Stage 1 - Feature Extraction**: Deep CNN with ResNet-style residual blocks enhanced with CBAM (Convolutional Block Attention Module) for channel and spatial attention.
-- **Stage 2 - Sequence Modeling**: Bidirectional LSTM processes feature sequences, refined by Transformer Encoder for long-range dependencies.
+- **Stage 1: Feature Extraction**: Deep CNN with ResNet-style residual blocks enhanced with CBAM (Convolutional Block Attention Module) for channel and spatial attention.
+- **Stage 2: Sequence Modeling**: Bidirectional LSTM processes feature sequences, refined by Transformer Encoder for long-range dependencies.
 - **Loss Function**: Connectionist Temporal Classification (CTC) for unsegmented sequence learning.
 
 **Key Specifications:**
@@ -154,16 +183,16 @@ The performance metrics table displays the model's accuracy on validation and te
 
 ---
 
-## 🚀 Installation & Setup:
+## Installation & Setup.
 
-### Prerequisites:
+### Prerequisites.
 
-- **Python** 3.11 (recommended) or 3.8+
-- **Windows, macOS, or Linux** operating system
-- **At least 500MB** free disk space
-- **Git** (optional, for cloning the repository)
+- **Python** 3.11 (recommended) or 3.8+.
+- **Windows, macOS, or Linux** operating system.
+- **At least 500MB** free disk space.
+- **Git** (optional, for cloning the repository).
 
-### Installation (Automated):
+### Installation (Automated).
 
 The easiest way to set up the application is using the provided PowerShell script:
 
@@ -172,13 +201,13 @@ The easiest way to set up the application is using the provided PowerShell scrip
 ```
 
 This script will automatically:
-- Check for Python installation
-- Create a Python virtual environment
-- Install all dependencies (PySide6, ONNX Runtime, Pillow, NumPy)
-- Verify the ONNX model exists
-- Verify all resources are in place
+- Check for Python installation.
+- Create a Python virtual environment.
+- Install all dependencies (PySide6, ONNX Runtime, Pillow, NumPy).
+- Verify the ONNX model exists.
+- Verify all resources are in place.
 
-### Running the Application:
+### Running the Application.
 
 Launch the desktop application with:
 
@@ -189,14 +218,14 @@ Launch the desktop application with:
 The application will open with the Fallout-themed interface ready for use.
 
 For detailed setup and usage instructions, see:
-- **[Distribution Guide](Distribution.md)** - Standalone executable and distribution information
-- **[Installation and Setup Guide](InstallationAndSetup.md)** - Complete setup instructions for development
-- **[Usage Guide](Usage.md)** - How to use the desktop application
-- **[Codebase Index](CodeBaseIndex.md)** - Project structure and file descriptions
+- **[Distribution Guide](Distribution.md)**: Standalone executable and distribution information.
+- **[Installation and Setup Guide](InstallationAndSetup.md)**: Complete setup instructions for development.
+- **[Usage Guide](Usage.md)**: How to use the desktop application.
+- **[Codebase Index](CodeBaseIndex.md)**: Project structure and file descriptions.
 
 ---
 
-## 💡 Technology Stack
+## Technology Stack.
 
 ### Desktop Application (PySide6)
 - **Framework**: PySide6 6.6.1 (Qt for Python)
@@ -215,36 +244,36 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## 📊 Model Performance
+## Model Performance.
 
 | Metric             | Validation Set | Test Set |
 | ------------------ | :------------: | :------: |
 | Sequence Accuracy  |     86.4%      | 86.37%   |
 | Character Accuracy |     95.1%      | 95.08%   |
 
-**Inference Time**: 30-100ms per image (CPU)
-**Model Size**: 273MB (ONNX format)
+**Inference Time**: 30-100ms per image (CPU).
+**Model Size**: 273MB (ONNX format).
 
 ---
 
-## 🔗 Resources
+## Resources.
 
-- **GitHub Repository**: [CRNN_Captcha_Recognition](https://github.com/WhiteMetagross/CRNN_Captcha_Recognition)
-- **Dataset**: [Huge CAPTCHA Dataset on Kaggle](https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset)
-- **Creator**: Mridankan Mandal (RedZapdos123, WhiteMetagross)
-
----
-
-## 📖 Documentation
-
-- **[Installation and Setup Guide](InstallationAndSetup.md)** - Detailed setup instructions for the desktop application
-- **[Usage Guide](Usage.md)** - How to use the desktop application features
-- **[Codebase Index](CodeBaseIndex.md)** - Complete file structure and descriptions
-- **[API Documentation](API.md)** - Reference documentation (for historical context)
+- **GitHub Repository**: [CRNN_Captcha_Recognition](https://github.com/WhiteMetagross/CRNN_Captcha_Recognition).
+- **Dataset**: [Huge CAPTCHA Dataset on Kaggle](https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset).
+- **Creator**: Mridankan Mandal (RedZapdos123, WhiteMetagross).
 
 ---
 
-## 📝 License and Attribution
+## Documentation.
+
+- **[Installation and Setup Guide](InstallationAndSetup.md)**: Detailed setup instructions for the desktop application.
+- **[Usage Guide](Usage.md)**: How to use the desktop application features.
+- **[Codebase Index](CodeBaseIndex.md)**: Complete file structure and descriptions.
+- **[API Documentation](API.md)**: Reference documentation (for historical context).
+
+---
+
+## License and Attribution.
 
 This project is created by **Mridankan Mandal** as part of **Project AA**.
 
@@ -252,11 +281,11 @@ The model was trained on the **Huge CAPTCHA Dataset** available on Kaggle.
 
 © 2025 UltraCaptureV3. All rights reserved.
 
-Licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+Licensed under the MIT License: see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## 🆘 Support and Troubleshooting
+## Support and Troubleshooting.
 
 For setup issues, see the [Installation and Setup Guide](InstallationAndSetup.md).
 

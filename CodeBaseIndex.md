@@ -79,286 +79,284 @@ UltraCaptureV3/
 
 These directories are listed in `.gitignore` to keep the repository clean.
 
-## Desktop Application Components:
+## Desktop Application Components.
 
-### Main Application Files:
+### Main Application Files.
 
-#### `main.py`:
+#### `main.py`.
 The main entry point for the desktop application:
-- Initializes the PySide6 application
-- Creates the main window
-- Loads the Fallout-themed interface
-- Handles application lifecycle
+- Initializes the PySide6 application.
+- Creates the main window.
+- Loads the Fallout-themed interface.
+- Handles application lifecycle.
 
-#### `config.py`:
+#### `config.py`.
 Configuration management for the application:
-- Base directory paths
-- Resources directory configuration
-- Model path configuration
-- Configuration file paths
-- Logging configuration
+- Base directory paths.
+- Resources directory configuration.
+- Model path configuration.
+- Configuration file paths.
+- Logging configuration.
 
-### Build and Distribution Scripts:
+### Build and Distribution Scripts.
 
-#### `build_exe.ps1`:
+#### `build_exe.ps1`.
 PowerShell script for building the standalone executable:
-- Activates the Python virtual environment
-- Cleans previous build artifacts
-- Runs PyInstaller with optimized settings
-- Creates `dist/UltraCaptureV3.exe` (470+ MB)
-- Includes all dependencies and the ONNX model
+- Activates the Python virtual environment.
+- Cleans previous build artifacts.
+- Runs PyInstaller with optimized settings.
+- Creates `dist/UltraCaptureV3.exe` (470+ MB).
+- Includes all dependencies and the ONNX model.
 
-#### `build.py`:
+#### `build.py`.
 Python script for building the standalone executable:
-- Alternative to `build_exe.ps1`
-- Same functionality as the PowerShell script
-- Cross-platform compatible
-- Useful for non-Windows environments
+- Alternative to `build_exe.ps1`.
+- Same functionality as the PowerShell script.
+- Cross-platform compatible.
+- Useful for non-Windows environments.
 
-#### `create_distribution.ps1`:
+#### `create_distribution.ps1`.
 PowerShell script for creating the distribution package:
-- Copies the executable to a distribution folder
-- Includes README.md and LICENSE files
-- Creates a ZIP file for easy distribution
-- Generates `dist/UltraCaptureV3-Distribution.zip`
+- Copies the executable to a distribution folder.
+- Includes README.md and LICENSE files.
+- Creates a ZIP file for easy distribution.
+- Generates `dist/UltraCaptureV3-Distribution.zip`.
 
-### Core Inference Logic:
+### Core Inference Logic.
 
-#### `core/model_manager.py`:
+#### `core/model_manager.py`.
 ONNX model management:
-- Loads the ONNX model from `resources/models/best_model.onnx`
-- Manages model inference sessions
-- Handles model initialization and cleanup
-- Provides prediction interface
+- Loads the ONNX model from `resources/models/best_model.onnx`.
+- Manages model inference sessions.
+- Handles model initialization and cleanup.
+- Provides prediction interface.
 
-#### `core/image_processor.py`:
+#### `core/image_processor.py`.
 Image preprocessing pipeline:
-- Loads images from file paths
-- Resizes images to 64×256 pixels
-- Normalizes pixel values
-- Converts to appropriate tensor format for the model
+- Loads images from file paths.
+- Resizes images to 64×256 pixels.
+- Normalizes pixel values.
+- Converts to appropriate tensor format for the model.
 
-#### `core/ctc_decoder.py`:
+#### `core/ctc_decoder.py`.
 CTC (Connectionist Temporal Classification) decoding:
-- Decodes model output to text
-- Handles greedy decoding strategy
-- Maps character indices to actual characters
-- Supports 62-character charset (0-9, A-Z, a-z)
+- Decodes model output to text.
+- Handles greedy decoding strategy.
+- Maps character indices to actual characters.
+- Supports 62-character charset (0-9, A-Z, a-z).
 
-#### `core/config_loader.py`:
+#### `core/config_loader.py`.
 Configuration file loader:
-- Loads model configuration from JSON
-- Provides access to model hyperparameters
-- Manages character set and encoding
+- Loads model configuration from JSON.
+- Provides access to model hyperparameters.
+- Manages character set and encoding.
 
-### User Interface:
+### User Interface.
 
-#### `ui/main_window.py`:
+#### `ui/main_window.py`.
 Main application window:
-- Creates the main PySide6 window
-- Sets up the tab widget with four tabs
-- Manages window properties and styling
-- Handles theme switching
+- Creates the main PySide6 window.
+- Sets up the tab widget with four tabs.
+- Manages window properties and styling.
+- Handles theme switching.
 
-#### `ui/tabs/home_tab.py`:
+#### `ui/tabs/home_tab.py`.
 Home tab implementation:
-- Displays project title and tagline
-- Shows accuracy metrics (95.08% character, 86.37% sequence)
-- Displays creator information
-- Shows profile cards with images
+- Displays project title and tagline.
+- Shows accuracy metrics (95.08% character, 86.37% sequence).
+- Displays creator information.
+- Shows profile cards with images.
 
-#### `ui/tabs/about_tab.py`:
+#### `ui/tabs/about_tab.py`.
 About tab implementation:
-- Project overview and description
-- Key features list with complete sentences
-- External links (GitHub, Kaggle)
-- Performance metrics table
-- Training metrics visualization
+- Project overview and description.
+- Key features list with complete sentences.
+- External links (GitHub, Kaggle).
+- Performance metrics table.
+- Training metrics visualization.
 
-#### `ui/tabs/architecture_tab.py`:
+#### `ui/tabs/architecture_tab.py`.
 Architecture tab implementation:
-- CRNN model architecture explanation
-- Model components breakdown with descriptions
-- Hyperparameters display
-- Technical specifications
-- Three-stage architecture flow visualization
+- CRNN model architecture explanation.
+- Model components breakdown with descriptions.
+- Hyperparameters display.
+- Technical specifications.
+- Three-stage architecture flow visualization.
 
-#### `ui/tabs/inference_tab.py`:
+#### `ui/tabs/inference_tab.py`.
 Inference tab implementation:
-- Drag-and-drop image upload interface
-- File browser for image selection
-- Image preview display
-- Predict button for running inference
-- Results display with prediction text and inference time
-- Clear button to reset for new image
+- Drag-and-drop image upload interface.
+- File browser for image selection.
+- Image preview display.
+- Predict button for running inference.
+- Results display with prediction text and inference time.
+- Clear button to reset for new image.
 
-### Custom Widgets:
+### Custom Widgets.
 
-#### `ui/widgets/metric_card.py`:
+#### `ui/widgets/metric_card.py`.
 Metric card widget:
-- Displays accuracy metrics in card format
-- Shows metric name and value
-- Styled with Fallout theme colors
+- Displays accuracy metrics in card format.
+- Shows metric name and value.
+- Styled with Fallout theme colors.
 
-#### `ui/widgets/profile_card.py`:
+#### `ui/widgets/profile_card.py`.
 Profile card widget:
-- Displays profile image and name
-- Used for creator information
-- Styled with Fallout theme
+- Displays profile image and name.
+- Used for creator information.
+- Styled with Fallout theme.
 
-#### `ui/widgets/image_upload_widget.py`:
+#### `ui/widgets/image_upload_widget.py`.
 Image upload widget:
-- Drag-and-drop area for image upload
-- Browse button for file selection
-- Supported format information
-- Upload instructions with complete sentences
+- Drag-and-drop area for image upload.
+- Browse button for file selection.
+- Supported format information.
+- Upload instructions with complete sentences.
 
-#### `ui/widgets/prediction_display.py`:
+#### `ui/widgets/prediction_display.py`.
 Prediction display widget:
-- Shows predicted CAPTCHA text in large, bold font
-- Displays model inference time
-- Color-coded for success/error states
-- Uses complete sentence labels
+- Shows predicted CAPTCHA text in large, bold font.
+- Displays model inference time.
+- Color-coded for success/error states.
+- Uses complete sentence labels.
 
+### Styling.
 
-
-### Styling:
-
-#### `ui/styles/fallout_theme.qss`:
+#### `ui/styles/fallout_theme.qss`.
 QSS stylesheet with Fallout-themed design:
-- Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme
-- Courier New monospace font for retro aesthetic
-- Enhanced button styling with padding and hover effects
-- Improved tab styling with better spacing
-- Enhanced frame and card styling with hover effects
-- Improved scrollbar styling
-- Enhanced text input styling with hover states
-- Improved table styling with better padding and hover effects
+- Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme.
+- Courier New monospace font for retro aesthetic.
+- Enhanced button styling with padding and hover effects.
+- Improved tab styling with better spacing.
+- Enhanced frame and card styling with hover effects.
+- Improved scrollbar styling.
+- Enhanced text input styling with hover states.
+- Improved table styling with better padding and hover effects.
 
-#### `ui/styles/colors.py`:
+#### `ui/styles/colors.py`.
 Color definitions:
-- Fallout theme color constants
-- Primary, secondary, and accent colors
-- Text and background colors
+- Fallout theme color constants.
+- Primary, secondary, and accent colors.
+- Text and background colors.
 
-#### `ui/styles/fonts.py`:
+#### `ui/styles/fonts.py`.
 Font definitions:
-- Courier New monospace font configuration
-- Font sizes for different UI elements
+- Courier New monospace font configuration.
+- Font sizes for different UI elements.
 
-### Utility Functions:
+### Utility Functions.
 
-#### `utils/logger.py`:
+#### `utils/logger.py`.
 Logging configuration:
-- Sets up application logging
-- Logs to console and file
-- Configurable log levels
+- Sets up application logging.
+- Logs to console and file.
+- Configurable log levels.
 
-#### `utils/file_utils.py`:
+#### `utils/file_utils.py`.
 File operation utilities:
-- File path handling
-- Directory creation
-- File existence checking
+- File path handling.
+- Directory creation.
+- File existence checking.
 
-#### `utils/image_utils.py`:
+#### `utils/image_utils.py`.
 Image utility functions:
-- Image loading and validation
-- Image format checking
-- Image dimension utilities
+- Image loading and validation.
+- Image format checking.
+- Image dimension utilities.
 
-### Configuration Files:
+### Configuration Files.
 
-#### `requirements.txt`:
+#### `requirements.txt`.
 Python dependencies:
-- PySide6 6.6.1 - Qt for Python GUI framework
-- ONNX Runtime 1.17.1 - CPU-based inference engine
-- Pillow 10.1.0 - Image processing
-- NumPy 1.24.3 - Numerical computing
+- PySide6 6.6.1 - Qt for Python GUI framework.
+- ONNX Runtime 1.17.1 - CPU-based inference engine.
+- Pillow 10.1.0 - Image processing.
+- NumPy 1.24.3 - Numerical computing.
 
-#### `setup.ps1`:
+#### `setup.ps1`.
 Setup automation script:
-- Checks for Python installation
-- Creates virtual environment
-- Installs dependencies
-- Verifies ONNX model
-- Verifies resources
+- Checks for Python installation.
+- Creates virtual environment.
+- Installs dependencies.
+- Verifies ONNX model.
+- Verifies resources.
 
-#### `start.ps1`:
+#### `start.ps1`.
 Launch script:
-- Activates virtual environment
-- Launches the desktop application
-- Displays status messages
+- Activates virtual environment.
+- Launches the desktop application.
+- Displays status messages.
 
-### Resources:
+### Resources.
 
-#### `resources/models/best_model.onnx`:
+#### `resources/models/best_model.onnx`.
 ONNX model file (273MB):
-- Pre-trained CRNN model for CAPTCHA recognition
-- CPU-optimized inference
-- 95.08% character accuracy, 86.37% sequence accuracy
+- Pre-trained CRNN model for CAPTCHA recognition.
+- CPU-optimized inference.
+- 95.08% character accuracy, 86.37% sequence accuracy.
 
-#### `resources/config/model_config.json`:
+#### `resources/config/model_config.json`.
 Model configuration:
-- Image dimensions (64×256)
-- Character set (62 characters)
-- Model hyperparameters
+- Image dimensions (64×256).
+- Character set (62 characters).
+- Model hyperparameters.
 
-#### `resources/images/`:
+#### `resources/images/`.
 Profile images:
-- redZapdos.jpg - Profile image
-- WhiteMetagross.jpg - Profile image
-- TrainingMetrics.png - Training metrics visualization
+- redZapdos.jpg - Profile image.
+- WhiteMetagross.jpg - Profile image.
+- TrainingMetrics.png - Training metrics visualization.
 
-## Key Features and Architecture
+## Key Features and Architecture.
 
-### Model Architecture:
+### Model Architecture.
 
 The CRNN (Convolutional Recurrent Neural Network) model consists of:
 
-1. **Convolutional Backbone:** ResNet-style CNN with residual connections for robust feature extraction
-2. **CBAM Attention:** Channel and spatial attention mechanisms for feature refinement
-3. **Bidirectional LSTM:** Captures temporal dependencies in CAPTCHA text sequences
-4. **Transformer Encoder:** Processes long-range dependencies for enhanced text recognition
-5. **CTC Loss:** Connectionist Temporal Classification for sequence-to-sequence learning
+1. **Convolutional Backbone:** ResNet-style CNN with residual connections for robust feature extraction.
+2. **CBAM Attention:** Channel and spatial attention mechanisms for feature refinement.
+3. **Bidirectional LSTM:** Captures temporal dependencies in CAPTCHA text sequences.
+4. **Transformer Encoder:** Processes long-range dependencies for enhanced text recognition.
+5. **CTC Loss:** Connectionist Temporal Classification for sequence-to-sequence learning.
 
-### Model Performance:
+### Model Performance.
 
-- **Character Accuracy:** 95.08% (individual character prediction accuracy)
-- **Sequence Accuracy:** 86.37% (entire CAPTCHA sequence prediction accuracy)
-- **Inference Time:** 30-100ms per image on modern CPUs
-- **Model Size:** 273MB (ONNX format, CPU-optimized)
-- **Input:** 64×256 pixel images (RGB)
-- **Output:** 62-character charset (0-9, A-Z, a-z)
+- **Character Accuracy:** 95.08% (individual character prediction accuracy).
+- **Sequence Accuracy:** 86.37% (entire CAPTCHA sequence prediction accuracy).
+- **Inference Time:** 30-100ms per image on modern CPUs.
+- **Model Size:** 273MB (ONNX format, CPU-optimized).
+- **Input:** 64×256 pixel images (RGB).
+- **Output:** 62-character charset (0-9, A-Z, a-z).
 
-### Deployment:
+### Deployment.
 
-- **Framework:** ONNX Runtime 1.17.1 (CPU-based inference)
-- **No GPU Required:** Fully optimized for CPU performance
-- **Cross-Platform:** Runs on Windows, macOS, and Linux
-- **Offline Capable:** Works completely offline after initial setup
-- **Lightweight:** No PyTorch or TensorFlow required for inference
+- **Framework:** ONNX Runtime 1.17.1 (CPU-based inference).
+- **No GPU Required:** Fully optimized for CPU performance.
+- **Cross-Platform:** Runs on Windows, macOS, and Linux.
+- **Offline Capable:** Works completely offline after initial setup.
+- **Lightweight:** No PyTorch or TensorFlow required for inference.
 
-## Development and Customization
+## Development and Customization.
 
-### Adding New Features:
+### Adding New Features.
 
 To add new features to the desktop application:
 
-1. **New Tab:** Create a new file in `ui/tabs/` and implement the tab class
-2. **New Widget:** Create a new file in `ui/widgets/` for custom widgets
-3. **New Utility:** Add functions to `utils/` modules
-4. **Styling:** Update `ui/styles/fallout_theme.qss` for visual changes
+1. **New Tab:** Create a new file in `ui/tabs/` and implement the tab class.
+2. **New Widget:** Create a new file in `ui/widgets/` for custom widgets.
+3. **New Utility:** Add functions to `utils/` modules.
+4. **Styling:** Update `ui/styles/fallout_theme.qss` for visual changes.
 
-### Modifying the Model:
+### Modifying the Model.
 
 To use a different ONNX model:
 
-1. Replace `resources/models/best_model.onnx` with your model
-2. Update `resources/config/model_config.json` with new model parameters
-3. Ensure input/output shapes match the model expectations
-4. Update charset if different from 62 characters
+1. Replace `resources/models/best_model.onnx` with your model.
+2. Update `resources/config/model_config.json` with new model parameters.
+3. Ensure input/output shapes match the model expectations.
+4. Update charset if different from 62 characters.
 
-### Building Executables:
+### Building Executables.
 
 To create a standalone executable (Windows):
 
@@ -369,101 +367,101 @@ pyinstaller --onefile --windowed main.py
 
 The executable will be created in the `dist/` directory.
 
-## Documentation Files
+## Documentation Files.
 
-### `InstallationAndSetup.md`:
+### `InstallationAndSetup.md`.
 Comprehensive installation guide:
-- Prerequisites for desktop application
-- Automated and manual setup instructions
-- Running the desktop application
-- Troubleshooting common issues
-- Environment configuration
+- Prerequisites for desktop application.
+- Automated and manual setup instructions.
+- Running the desktop application.
+- Troubleshooting common issues.
+- Environment configuration.
 
-### `Usage.md`:
+### `Usage.md`.
 User guide for desktop application:
-- Desktop application usage
-- Tab navigation and features
-- Tips and best practices
-- Troubleshooting
+- Desktop application usage.
+- Tab navigation and features.
+- Tips and best practices.
+- Troubleshooting.
 
-### `API.md`:
-Historical REST API documentation (for reference)
+### `API.md`.
+Historical REST API documentation (for reference).
 
-### `CodeBaseIndex.md`:
-This file - complete codebase structure and descriptions
+### `CodeBaseIndex.md`.
+This file - complete codebase structure and descriptions.
 
-### `README.md`:
+### `README.md`.
 Project README with:
-- Project overview and features
-- Model architecture details
-- Performance metrics
-- Quick start guide
-- Links to detailed documentation
+- Project overview and features.
+- Model architecture details.
+- Performance metrics.
+- Quick start guide.
+- Links to detailed documentation.
 
-## PowerShell Scripts:
+## PowerShell Scripts.
 
-### `setup.ps1`:
+### `setup.ps1`.
 Automated setup script:
-- Checks for Python installation
-- Creates Python virtual environment
-- Installs dependencies
-- Verifies ONNX model
-- Verifies resources
+- Checks for Python installation.
+- Creates Python virtual environment.
+- Installs dependencies.
+- Verifies ONNX model.
+- Verifies resources.
 
-### `start.ps1`:
+### `start.ps1`.
 Application startup script:
-- Activates virtual environment
-- Launches desktop application
-- Displays status messages
+- Activates virtual environment.
+- Launches desktop application.
+- Displays status messages.
 
-## Technology Stack
+## Technology Stack.
 
-### Desktop Application
-- **Framework:** PySide6 6.6.1 (Qt for Python)
-- **Inference:** ONNX Runtime 1.17.1 (CPU-optimized)
-- **Image Processing:** Pillow 10.1.0, NumPy 1.24.3
-- **Styling:** QSS (Qt Style Sheets) with Fallout theme
-- **Python:** 3.11 (recommended) or 3.8+
+### Desktop Application.
+- **Framework:** PySide6 6.6.1 (Qt for Python).
+- **Inference:** ONNX Runtime 1.17.1 (CPU-optimized).
+- **Image Processing:** Pillow 10.1.0, NumPy 1.24.3.
+- **Styling:** QSS (Qt Style Sheets) with Fallout theme.
+- **Python:** 3.11 (recommended) or 3.8+.
 
-## Key Design Decisions
+## Key Design Decisions.
 
 1. **ONNX Runtime for CPU Inference:**
-   - No GPU requirement (works on any CPU)
-   - Faster inference than PyTorch (30-100ms per image)
-   - Smaller deployment footprint (273MB model)
-   - Cross-platform compatibility
+   - No GPU requirement (works on any CPU).
+   - Faster inference than PyTorch (30-100ms per image).
+   - Smaller deployment footprint (273MB model).
+   - Cross-platform compatibility.
 
 2. **Desktop Application Focus:**
-   - Native GUI for performance and offline capability
-   - Standalone executable for easy distribution
-   - Direct ONNX model access (no API required)
+   - Native GUI for performance and offline capability.
+   - Standalone executable for easy distribution.
+   - Direct ONNX model access (no API required).
 
 3. **Fallout-Themed Design:**
-   - Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme
-   - Courier New monospace font for retro aesthetic
-   - Enhanced interactive elements with hover effects
+   - Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme.
+   - Courier New monospace font for retro aesthetic.
+   - Enhanced interactive elements with hover effects.
 
 4. **Modular Architecture:**
-   - Clear separation between core inference, UI, and utilities
-   - Easy to extend with new tabs and widgets
-   - Reusable components for consistent design
+   - Clear separation between core inference, UI, and utilities.
+   - Easy to extend with new tabs and widgets.
+   - Reusable components for consistent design.
 
 5. **Threading for Desktop:**
-   - Non-blocking inference using QThread to prevent UI freezing
-   - Responsive interface during model processing
+   - Non-blocking inference using QThread to prevent UI freezing.
+   - Responsive interface during model processing.
 
-## Development Workflow
+## Development Workflow.
 
-### Desktop Application Development
+### Desktop Application Development.
 ```bash
 .\setup.ps1  # First time only
 .\start.ps1  # Launch application
 ```
-- PySide6 for native GUI
-- Direct ONNX model access (no API required)
-- QSS stylesheets for theming
+- PySide6 for native GUI.
+- Direct ONNX model access (no API required).
+- QSS stylesheets for theming.
 
-### Building for Production
+### Building for Production.
 
 **Desktop:**
 ```bash
@@ -472,12 +470,12 @@ pyinstaller --onefile --windowed main.py
 # Creates standalone executable in dist/
 ```
 
-## Future Enhancements:
+## Future Enhancements.
 
 Potential areas for expansion:
-- Batch image processing
-- Model performance analytics dashboard
-- Real-time webcam capture for CAPTCHA solving
-- Additional export formats for predictions
-- Model fine-tuning interface
+- Batch image processing.
+- Model performance analytics dashboard.
+- Real-time webcam capture for CAPTCHA solving.
+- Additional export formats for predictions.
+- Model fine-tuning interface.
 
