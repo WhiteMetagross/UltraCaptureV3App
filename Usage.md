@@ -1,14 +1,14 @@
-# Usage Guide.
+# Usage Guide:
 
 This guide explains how to use the UltraCaptureV3 desktop application. The application is a standalone PySide6-based CAPTCHA recognition system with a Fallout-themed interface.
 
-## Desktop Application Usage.
+## Desktop Application Usage:
 
-### Starting the Desktop Application.
+### Starting the Desktop Application:
 
 Before using the desktop application, ensure setup is complete. See the [Installation and Setup Guide](InstallationAndSetup.md) for detailed instructions.
 
-### Using the Automated Start Script (Recommended).
+### Using the Automated Start Script (Recommended):
 
 The easiest way to start the application is using the provided PowerShell script:
 
@@ -35,7 +35,7 @@ Launching application...
 UltraCaptureV3 is now running!
 ```
 
-### Manual Start (Alternative).
+### Manual Start (Alternative):
 
 If you prefer to start the application manually:
 
@@ -44,15 +44,15 @@ venv\Scripts\activate  # Windows
 python main.py
 ```
 
-## Accessing the Application.
+## Accessing the Application:
 
 Once the application is running, the desktop window will open automatically with the Fallout-themed interface.
 
-## Navigating the Interface.
+## Navigating the Interface:
 
 The UltraCaptureV3 desktop application features a Fallout-themed aesthetic with four main tabs:
 
-### 1. Home Tab.
+### 1. Home Tab:
 
 The home page displays:
 - **Project Title:** UltraCaptureV3.
@@ -71,7 +71,7 @@ The home tab displays the main project information with accuracy metrics and cre
 - Use the tab bar at the top to navigate between tabs.
 - Click on "Home", "About", "Architecture", or "Inference" to switch tabs.
 
-### 2. About Tab.
+### 2. About Tab:
 
 This tab provides comprehensive information about the project:
 
@@ -104,7 +104,7 @@ The second section displays comprehensive performance metrics including validati
 - **GitHub Repository:** Click to view the source code.
 - **Kaggle Dataset:** Click to access the training dataset.
 
-### 3. Architecture Tab.
+### 3. Architecture Tab:
 
 This tab explains the technical details of the model:
 
@@ -132,7 +132,7 @@ The architecture tab displays a comprehensive visual diagram of the CRNN model s
   2. Sequence Modeling (Bi-LSTM + Transformer).
   3. Decoding (CTC Loss Function and Greedy Decoding).
 
-### 4. Inference Tab (Live Inference Demonstration).
+### 4. Inference Tab (Live Inference Demonstration):
 
 This is the interactive tab where you can test the model with your own CAPTCHA images.
 
@@ -142,9 +142,9 @@ The Inference tab provides an interactive drag-and-drop interface for uploading 
 
 The inference tab features a drag-and-drop interface for image upload, real-time prediction display with inference timing, and a clean layout for testing CAPTCHA recognition with custom images.
 
-## Using the Live Inference Demonstration.
+## Using the Live Inference Demonstration:
 
-### Step 1: Upload an Image.
+### Step 1: Upload an Image:
 
 There are two ways to upload a CAPTCHA image:
 
@@ -168,19 +168,19 @@ There are two ways to upload a CAPTCHA image:
 - Images will be automatically resized to 64×256 pixels.
 - Color images are supported (will be processed as RGB).
 
-### Step 2: Preview the Image.
+### Step 2: Preview the Image:
 
 After uploading, you'll see:
 - A preview of your uploaded image.
 - An "X" button in the top-right corner to clear the image and start over.
 
-### Step 3: Get Prediction.
+### Step 3: Get Prediction:
 
 1. Click the **"Predict CAPTCHA"** button.
 2. The button will change to "Processing..." while the model analyzes the image.
 3. Wait for the prediction (usually takes 30-100 milliseconds on CPU with ONNX Runtime).
 
-### Step 4: View Results.
+### Step 4: View Results:
 
 Once processing is complete, you'll see:
 
@@ -198,7 +198,7 @@ Predicted CAPTCHA Text: aB3xY9
 Model Inference Time: 145.23 ms
 ```
 
-### Step 5: Try Another Image.
+### Step 5: Try Another Image:
 
 After viewing the results:
 1. Click the **"Clear"** button to clear the current results and prediction.
@@ -206,20 +206,20 @@ After viewing the results:
 
 Alternatively, click the "X" button on the image preview to start fresh.
 
-## Tips for Best Results.
+## Tips for Best Results:
 
-### Image Quality.
+### Image Quality:
 - Use clear, high-contrast CAPTCHA images.
 - Avoid heavily distorted or low-resolution images.
 - The model performs best on images similar to the Huge CAPTCHA Dataset.
 
-### Supported Characters.
+### Supported Characters:
 The model recognizes 62 characters:
 - **Digits:** 0-9.
 - **Uppercase Letters:** A-Z.
 - **Lowercase Letters:** a-z.
 
-### Common Issues and Solutions.
+### Common Issues and Solutions:
 
 **Issue:** Application fails to start.
 - **Solution:** Ensure the ONNX model exists at `resources/models/best_model.onnx` and all dependencies are installed.
@@ -233,9 +233,9 @@ The model recognizes 62 characters:
 **Issue:** Slow inference time.
 - **Solution:** First prediction may be slower due to model initialization. Subsequent predictions should be faster (100-200ms).
 
-## Understanding the Results.
+## Understanding the Results:
 
-### Character Accuracy vs. Sequence Accuracy.
+### Character Accuracy vs. Sequence Accuracy:
 
 **Character Accuracy (95.08%):**
 - Percentage of individual characters correctly predicted.
@@ -246,7 +246,7 @@ The model recognizes 62 characters:
 - The entire prediction must match exactly to count as correct.
 - Example: "aB3xY9" vs "aB3xY8" would be 0% sequence accuracy (incorrect), and 83.3% character accuracy.
 
-### Inference Time.
+### Inference Time:
 
 The inference time includes:
 1. Image preprocessing (resize, normalize).
@@ -262,16 +262,16 @@ The inference time includes:
 - Image size and complexity.
 - System resource availability.
 
-## Advanced Usage.
+## Advanced Usage:
 
-### Testing Multiple Images.
+### Testing Multiple Images:
 
 To test multiple images efficiently:
 1. Prepare a folder with multiple CAPTCHA images.
 2. Upload and test each image one by one.
 3. Note the predictions and compare with ground truth (if available).
 
-### Analyzing Model Performance.
+### Analyzing Model Performance:
 
 To evaluate the model on your own dataset:
 1. Collect a set of CAPTCHA images with known labels.
@@ -280,13 +280,13 @@ To evaluate the model on your own dataset:
    - **Character Accuracy:** (Correct characters) / (Total characters).
    - **Sequence Accuracy:** (Correct sequences) / (Total sequences).
 
-## Keyboard Shortcuts.
+## Keyboard Shortcuts:
 
 Currently, the application does not support keyboard shortcuts. All interactions are mouse-based.
 
-## Troubleshooting.
+## Troubleshooting:
 
-### Common Errors.
+### Common Errors:
 
 **Error:** "No image file provided".
 - **Cause:** No file was selected or uploaded.
@@ -304,7 +304,7 @@ Currently, the application does not support keyboard shortcuts. All interactions
 - **Cause:** Model encountered an error during processing.
 - **Solution:** Check the console output for error messages and ensure the ONNX model exists.
 
-### Performance Issues.
+### Performance Issues:
 
 **Slow Predictions:**
 - First prediction is always slower (model initialization).
@@ -315,7 +315,7 @@ Currently, the application does not support keyboard shortcuts. All interactions
 - Close other applications to free up system resources.
 - Restart the application.
 
-## Getting Help.
+## Getting Help:
 
 If you encounter issues not covered in this guide:
 

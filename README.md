@@ -1,10 +1,10 @@
-# UltraCaptureV3: Advanced CAPTCHA Recognition Desktop Application.
+# UltraCaptureV3: Advanced CAPTCHA Recognition Desktop Application:
 
 A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This desktop application provides a native, standalone interface for CAPTCHA text recognition with CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
 
 ---
 
-## Key Features.
+## Key Features:
 
 - **High Accuracy**: Achieves **95.08% Character Accuracy** and **86.37% Sequence Accuracy** on test sets.
 - **Advanced Architecture**: Hybrid CRNN combining ResNet-style CNN backbone, CBAM attention, Bi-LSTM, and Transformer Encoder.
@@ -17,7 +17,7 @@ A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolu
 
 ---
 
-## Project Structure.
+## Project Structure:
 
 ```
 UltraCaptureV3/
@@ -71,9 +71,9 @@ UltraCaptureV3/
 
 ---
 
-## Quick Start.
+## Quick Start:
 
-### For End Users (Standalone Executable)
+### For End Users (Standalone Executable):
 
 If you want to use the standalone executable without Python installation:
 
@@ -83,7 +83,7 @@ If you want to use the standalone executable without Python installation:
 
 **See [Distribution.md](Distribution.md) for detailed instructions and troubleshooting.**
 
-### For Developers (Development Setup)
+### For Developers (Development Setup):
 
 **First Time Setup:**
 ```powershell
@@ -107,36 +107,36 @@ The application will launch with the Fallout-themed interface ready for CAPTCHA 
 
 ---
 
-## Screenshots.
+## Screenshots:
 
-### Home Tab
+### Home Tab:
 ![Home Tab](visuals/HomeTab.png)
 
 The main interface displays the project title, tagline, and key performance metrics in a professional Fallout-themed design with the signature green and purple color scheme.
 
-### About Tab: Project Overview
+### About Tab: Project Overview:
 ![About Tab Overview](visuals/AboutTheProjectTab1.png)
 
 The About tab presents comprehensive project information including the CRNN architecture description and key features in an organized card-based layout.
 
-### About Tab: Performance Metrics
+### About Tab: Performance Metrics:
 ![About Tab Metrics](visuals/AboutTheProjectTab2WithTheTrainingAndValidationGraphs.png)
 
 Performance metrics section displays validation and test set accuracies with visual graphs showing the model's training progress and performance over time.
 
-### Model Architecture
+### Model Architecture:
 ![Model Architecture](visuals/ModelArchitectureTab.png)
 
 The architecture tab provides a detailed visual diagram of the hybrid CRNN model showing all components including the CNN backbone, attention mechanisms, LSTM, and transformer encoder.
 
-### Live Inference Demonstration
+### Live Inference Demonstration:
 ![Inference Tab](visuals/LiveInferenceDemonstrationTab.png)
 
 The inference tab features an interactive drag-and-drop interface for uploading CAPTCHA images and displaying real-time predictions with inference timing information.
 
 ---
 
-## Model Architecture.
+## Model Architecture:
 
 The model is a custom-built Convolutional Recurrent Neural Network (CRNN) that integrates multiple advanced concepts for maximum accuracy:
 
@@ -181,16 +181,16 @@ The performance metrics table displays the model's accuracy on validation and te
 
 ---
 
-## Installation & Setup.
+## Installation & Setup:
 
-### Prerequisites.
+### Prerequisites:
 
 - **Python** 3.11 (recommended) or 3.8+.
 - **Windows, macOS, or Linux** operating system.
 - **At least 500MB** free disk space.
 - **Git** (optional, for cloning the repository).
 
-### Installation (Automated).
+### Installation (Automated):
 
 The easiest way to set up the application is using the provided PowerShell script:
 
@@ -205,7 +205,7 @@ This script will automatically:
 - Verify the ONNX model exists.
 - Verify all resources are in place.
 
-### Running the Application.
+### Running the Application:
 
 Launch the desktop application with:
 
@@ -223,9 +223,9 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## Technology Stack.
+## Technology Stack:
 
-### Desktop Application (PySide6)
+### Desktop Application (PySide6):
 - **Framework**: PySide6 6.6.1 (Qt for Python)
 - **Inference Engine**: ONNX Runtime 1.17.1 (CPU-based)
 - **Image Processing**: Pillow 10.1.0
@@ -233,7 +233,7 @@ For detailed setup and usage instructions, see:
 - **Design**: Fallout-Themed UI with QSS Stylesheets
 - **Python Version**: 3.8+
 
-### Model & Inference
+### Model & Inference:
 - **Model Format**: ONNX (Open Neural Network Exchange)
 - **Model Size**: ~273MB
 - **Inference Speed**: 30-100ms per image (CPU)
@@ -242,7 +242,7 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## Model Performance.
+## Model Performance:
 
 | Metric             | Validation Set | Test Set |
 | ------------------ | :------------: | :------: |
@@ -254,7 +254,7 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## Resources.
+## Resources:
 
 - **GitHub Repository**: [CRNN_Captcha_Recognition](https://github.com/WhiteMetagross/CRNN_Captcha_Recognition).
 - **Dataset**: [Huge CAPTCHA Dataset on Kaggle](https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset).
@@ -262,7 +262,7 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## Documentation.
+## Documentation:
 
 - **[Installation and Setup Guide](InstallationAndSetup.md)**: Detailed setup instructions for the desktop application.
 - **[Usage Guide](Usage.md)**: How to use the desktop application features.
@@ -271,7 +271,7 @@ For detailed setup and usage instructions, see:
 
 ---
 
-## License and Attribution.
+## License and Attribution:
 
 This project is created by **Mridankan Mandal** as part of **Project AA**.
 
@@ -283,7 +283,7 @@ Licensed under the MIT License: see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## Support and Troubleshooting.
+## Support and Troubleshooting:
 
 For setup issues, see the [Installation and Setup Guide](InstallationAndSetup.md).
 

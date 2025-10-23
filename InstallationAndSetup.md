@@ -1,18 +1,18 @@
-# Installation and Setup Guide.
+# Installation and Setup Guide:
 
 This guide provides step-by-step instructions for setting up and running the UltraCaptureV3 desktop application. The application is a standalone PySide6-based CAPTCHA recognition system with a Fallout-themed interface.
 
-## Quick Links.
+## Quick Links:
 
 - **For End Users (Standalone Executable):** See [Distribution.md](Distribution.md) for instructions on downloading and running the pre-built executable.
 - **For Developers (Building from Source):** Continue with this guide for development setup.
 - **For Distribution Information:** See [Distribution.md](Distribution.md) for build scripts and distribution details.
 
-## Prerequisites.
+## Prerequisites:
 
 Before you begin, ensure you have the following installed on your system.
 
-### Required Software.
+### Required Software:
 
 1. **Python** (version 3.11 recommended, 3.8+ supported).
    - Download from: https://www.python.org/downloads/.
@@ -26,16 +26,16 @@ Before you begin, ensure you have the following installed on your system.
 3. **Git** (optional, for cloning the repository).
    - Download from: https://git-scm.com/.
 
-### System Requirements.
+### System Requirements:
 
 - **CPU:** Any modern processor (Intel, AMD, ARM).
 - **RAM:** Minimum 4GB (8GB recommended).
 - **Storage:** At least 500MB free space for dependencies and models.
 - **GPU:** Not required (CPU inference is fully supported).
 
-## Installation Steps.
+## Installation Steps:
 
-### Automated Setup (Recommended).
+### Automated Setup (Recommended):
 
 The easiest way to set up the application is using the provided PowerShell script:
 
@@ -43,7 +43,7 @@ The easiest way to set up the application is using the provided PowerShell scrip
 .\setup.ps1
 ```
 
-#### What the setup.ps1 Script Does.
+#### What the setup.ps1 Script Does:
 
 The `setup.ps1` PowerShell script automates the entire setup process for the desktop application:
 
@@ -84,11 +84,11 @@ Setup complete! You can now run .\start.ps1 to launch the application.
 - Ensure you have administrator privileges to create virtual environments.
 - If dependencies fail to install, try running the script again or use manual setup.
 
-### Manual Setup.
+### Manual Setup:
 
 If you prefer to set up manually or encounter issues with the automated script, follow these steps.
 
-#### Step 1: Create Virtual Environment.
+#### Step 1: Create Virtual Environment:
 
 1. Navigate to the project root directory.
 
@@ -107,7 +107,7 @@ If you prefer to set up manually or encounter issues with the automated script, 
      source venv/bin/activate
      ```
 
-#### Step 2: Install Dependencies.
+#### Step 2: Install Dependencies:
 
 Install Python dependencies (PySide6 and ONNX Runtime for CPU inference):
 ```bash
@@ -120,7 +120,7 @@ This will install:
 - Pillow 10.1.0 - Image processing.
 - NumPy 1.24.3 - Numerical computing.
 
-#### Step 3: Verify Resources.
+#### Step 3: Verify Resources:
 
 Verify the ONNX model exists:
 ```bash
@@ -129,9 +129,9 @@ ls resources/models/best_model.onnx
 
 The ONNX model should already be present in the `resources/models/` directory. If not, contact the project maintainers.
 
-## Running the Application.
+## Running the Application:
 
-### Automated Start (Recommended).
+### Automated Start (Recommended):
 
 Use the provided PowerShell script to launch the desktop application:
 
@@ -139,7 +139,7 @@ Use the provided PowerShell script to launch the desktop application:
 .\start.ps1
 ```
 
-#### What the start.ps1 Script Does.
+#### What the start.ps1 Script Does:
 
 The `start.ps1` PowerShell script launches the desktop application:
 
@@ -176,7 +176,7 @@ UltraCaptureV3 is now running!
 - If you see import errors, ensure all dependencies are installed with `pip install -r requirements.txt`.
 - If the application crashes, check the console output for error messages.
 
-### Manual Start.
+### Manual Start:
 
 If you prefer to start the application manually:
 
@@ -197,7 +197,7 @@ If you prefer to start the application manually:
 
    The application will open with the Fallout-themed interface.
 
-## Accessing the Application.
+## Accessing the Application:
 
 Once the application is running:
 
@@ -206,9 +206,9 @@ Once the application is running:
 3. Use the drag-and-drop area or browse button to select a CAPTCHA image.
 4. The model will process the image and display the predicted text.
 
-## Troubleshooting.
+## Troubleshooting:
 
-### Application Launch Issues.
+### Application Launch Issues:
 
 **Problem:** `ModuleNotFoundError` when starting the application.
 - **Solution:** Ensure you've activated the virtual environment and installed all dependencies with `pip install -r requirements.txt`.
@@ -225,7 +225,7 @@ Once the application is running:
 **Problem:** Application window doesn't appear or crashes immediately.
 - **Solution:** Check the console output for error messages. Ensure all dependencies are installed and the ONNX model exists.
 
-### Performance Issues.
+### Performance Issues:
 
 **Problem:** Slow inference times on CPU.
 - **Solution:** This is normal for CPU inference. ONNX Runtime is optimized for CPU performance, and typical inference times are 30-100ms per image.
@@ -233,7 +233,7 @@ Once the application is running:
 **Problem:** Application is slow or unresponsive.
 - **Solution:** Ensure your system has at least 4GB of RAM available. Close other applications to free up resources.
 
-### Setup Issues.
+### Setup Issues:
 
 **Problem:** `setup.ps1` script fails to run.
 - **Solution:** Ensure you have administrator privileges. Try running PowerShell as Administrator and then run the script again.
@@ -241,7 +241,7 @@ Once the application is running:
 **Problem:** Python is not found or not in PATH.
 - **Solution:** Ensure Python is installed and added to your system PATH. Restart your terminal after installing Python.
 
-### General Issues.
+### General Issues:
 
 **Problem:** Images not displaying in the application.
 - **Solution:** Ensure the profile images are present in the `resources/images/` directory.
@@ -249,9 +249,9 @@ Once the application is running:
 **Problem:** Application crashes when loading an image.
 - **Solution:** Ensure the image is in a supported format (PNG, JPG, JPEG) and is not corrupted. Check the console output for error messages.
 
-## Environment Configuration.
+## Environment Configuration:
 
-### Application Configuration.
+### Application Configuration:
 
 The application configuration is stored in `config.py`. Key settings include:
 
@@ -260,7 +260,7 @@ The application configuration is stored in `config.py`. Key settings include:
 - `MODEL_PATH`: Path to the ONNX model file.
 - `CONFIG_PATH`: Path to model configuration file.
 
-### Model Configuration.
+### Model Configuration:
 
 The model configuration is stored in `resources/config/model_config.json`. Key settings include:
 
@@ -271,7 +271,7 @@ The model configuration is stored in `resources/config/model_config.json`. Key s
 
 ---
 
-## Building the Executable.
+## Building the Executable:
 
 For developers who want to create a standalone executable for distribution, see [Distribution.md - Building from Source](Distribution.md#building-from-source) for detailed instructions on using the build scripts:
 
@@ -283,7 +283,7 @@ The build process creates a standalone Windows executable that requires no Pytho
 
 ---
 
-## Next Steps.
+## Next Steps:
 
 After successful installation and setup:
 
@@ -297,7 +297,7 @@ For detailed usage instructions, see the [Usage Guide](Usage.md).
 
 ---
 
-## Support.
+## Support:
 
 If you encounter issues not covered in this guide:
 

@@ -21,11 +21,11 @@
 
 ---
 
-## Overview.
+## Overview:
 
 **UltraCaptureV3** is an advanced CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This distribution includes a standalone Windows executable that requires no Python installation.
 
-### Key Highlights.
+### Key Highlights:
 
 - **High Accuracy:** 95.08% Character Accuracy, 86.37% Sequence Accuracy.
 - **Advanced Architecture:** Hybrid CRNN with ResNet backbone, CBAM attention, Bi-LSTM, and Transformer Encoder.
@@ -36,9 +36,9 @@
 
 ---
 
-## System Requirements.
+## System Requirements:
 
-### Minimum Requirements.
+### Minimum Requirements:
 
 - **Operating System:** Windows 7 or later (64-bit).
 - **RAM:** 4GB minimum.
@@ -46,7 +46,7 @@
 - **GPU:** Not required (CPU inference is fully supported).
 - **Python:** NOT required (included in the executable).
 
-### Recommended Requirements.
+### Recommended Requirements:
 
 - **Operating System:** Windows 10 or later (64-bit).
 - **RAM:** 8GB or more.
@@ -54,27 +54,27 @@
 
 ---
 
-## Quick Start for End Users.
+## Quick Start for End Users:
 
-### Step 1: Download the Distribution Package.
+### Step 1: Download the Distribution Package:
 
 Download `UltraCaptureV3-Distribution.zip` (approximately 469 MB).
 
 **File Location:** `dist/UltraCaptureV3-Distribution.zip`.
 
-### Step 2: Extract the Package.
+### Step 2: Extract the Package:
 
 1. Right-click the ZIP file.
 2. Select "Extract All...".
 3. Choose your destination folder (e.g., `C:\Program Files\UltraCaptureV3\`).
 
-### Step 3: Run the Application.
+### Step 3: Run the Application:
 
 1. Navigate to the extracted folder.
 2. Double-click `UltraCaptureV3.exe`.
 3. The application will launch with the Fallout-themed interface.
 
-### Step 4: Using the Application.
+### Step 4: Using the Application:
 
 - Navigate through the four tabs: **Home**, **About**, **Architecture**, and **Inference**.
 - Use the **Inference tab** to upload CAPTCHA images and get predictions.
@@ -82,17 +82,17 @@ Download `UltraCaptureV3-Distribution.zip` (approximately 469 MB).
 
 ---
 
-## Building from Source.
+## Building from Source:
 
-### Prerequisites.
+### Prerequisites:
 
 - Python 3.8+ (3.11 recommended).
 - Virtual environment (venv).
 - All dependencies from `requirements.txt`.
 
-### Build Instructions.
+### Build Instructions:
 
-#### Option 1: Using PowerShell Script (Recommended).
+#### Option 1: Using PowerShell Script (Recommended):
 
 ```powershell
 # First time setup
@@ -105,7 +105,7 @@ Download `UltraCaptureV3-Distribution.zip` (approximately 469 MB).
 .\create_distribution.ps1
 ```
 
-#### Option 2: Using Python Script.
+#### Option 2: Using Python Script:
 
 ```bash
 # First time setup
@@ -118,13 +118,13 @@ python build.py
 .\create_distribution.ps1
 ```
 
-### Build Output.
+### Build Output:
 
 - **Executable:** `dist/UltraCaptureV3.exe` (470+ MB).
 - **Distribution Package:** `dist/UltraCaptureV3-Distribution.zip` (469+ MB).
 - **Distribution Folder:** `dist/UltraCaptureV3-Distribution/`.
 
-### Build Scripts Reference.
+### Build Scripts Reference:
 
 - **`build_exe.ps1`** - PowerShell script for building the executable.
   - Cleans previous builds.
@@ -144,27 +144,27 @@ python build.py
 
 ---
 
-## Application Features.
+## Application Features:
 
-### Home Tab.
+### Home Tab:
 - Project title and tagline.
 - Accuracy metrics (95.08% character, 86.37% sequence).
 - Creator information.
 - Project overview.
 
-### About Tab.
+### About Tab:
 - Project overview and description.
 - Key features and capabilities.
 - Performance metrics table.
 - External links (GitHub, Kaggle).
 
-### Architecture Tab.
+### Architecture Tab:
 - CRNN model architecture explanation.
 - Model components breakdown.
 - Hyperparameters display.
 - Technical specifications.
 
-### Inference Tab (Main Feature).
+### Inference Tab (Main Feature):
 - **Upload Image:** Drag-and-drop or browse to select a CAPTCHA image.
 - **Supported Formats:** PNG, JPG, JPEG.
 - **Predict:** Click "Predict CAPTCHA" to run inference.
@@ -173,16 +173,16 @@ python build.py
 
 ---
 
-## Usage Guide.
+## Usage Guide:
 
-### Supported Characters.
+### Supported Characters:
 
 The model recognizes 62 characters:
 - **Digits:** 0-9.
 - **Uppercase Letters:** A-Z.
 - **Lowercase Letters:** a-z.
 
-### Performance Metrics.
+### Performance Metrics:
 
 | Metric             | Validation Set | Test Set |
 | ------------------ | :------------: | :------: |
@@ -192,7 +192,7 @@ The model recognizes 62 characters:
 **Inference Time:** 30-100ms per image (CPU).
 **Model Size:** 273MB (ONNX format).
 
-### Tips for Best Results.
+### Tips for Best Results:
 
 - Use clear, high-contrast CAPTCHA images.
 - Avoid heavily distorted or low-resolution images.
@@ -202,9 +202,9 @@ The model recognizes 62 characters:
 
 ---
 
-## Troubleshooting.
+## Troubleshooting:
 
-### Application Won't Start.
+### Application Won't Start:
 
 **Problem:** Application fails to launch.
 **Solutions:**
@@ -213,7 +213,7 @@ The model recognizes 62 characters:
 - Check that you have at least 500MB free disk space.
 - Verify the executable file is not corrupted.
 
-### Slow Performance.
+### Slow Performance:
 
 **Problem:** Predictions are taking too long.
 **Solutions:**
@@ -222,7 +222,7 @@ The model recognizes 62 characters:
 - Ensure your system has at least 4GB of RAM available.
 - Check CPU usage and close unnecessary programs.
 
-### Prediction Errors.
+### Prediction Errors:
 
 **Problem:** Model predictions are incorrect.
 **Solutions:**
@@ -231,7 +231,7 @@ The model recognizes 62 characters:
 - Ensure the image is in PNG, JPG, or JPEG format.
 - Check that the image can be resized to 64×256 pixels.
 
-### Image Upload Issues.
+### Image Upload Issues:
 
 **Problem:** Image upload doesn't work.
 **Solutions:**
@@ -240,7 +240,7 @@ The model recognizes 62 characters:
 - Try dragging and dropping instead of using the browse button.
 - Verify the image file is not corrupted.
 
-### Application Crashes.
+### Application Crashes:
 
 **Problem:** Application crashes unexpectedly.
 **Solutions:**
@@ -251,9 +251,9 @@ The model recognizes 62 characters:
 
 ---
 
-## Distribution Package Contents.
+## Distribution Package Contents:
 
-### Build Output Structure.
+### Build Output Structure:
 
 After running the build scripts, the following directories and files are created:
 
@@ -267,7 +267,7 @@ dist/
     └── LICENSE
 ```
 
-### Distribution Package Contents.
+### Distribution Package Contents:
 
 When you extract `UltraCaptureV3-Distribution.zip`, you get:
 
@@ -284,7 +284,7 @@ UltraCaptureV3-Distribution/
     └── images/                  # Profile images
 ```
 
-### File Sizes.
+### File Sizes:
 
 - **UltraCaptureV3.exe:** 470.43 MB.
 - **UltraCaptureV3-Distribution.zip:** 469.48 MB.
@@ -293,9 +293,9 @@ UltraCaptureV3-Distribution/
 
 ---
 
-## Version Information.
+## Version Information:
 
-### Current Version: 1.0.0.
+### Current Version: 1.0.0:
 
 **Build Information:**
 - Build Date: 2025-10-23.
@@ -304,7 +304,7 @@ UltraCaptureV3-Distribution/
 - ONNX Runtime Version: 1.17.1.
 - PyInstaller Version: 6.3.0.
 
-### Changelog.
+### Changelog:
 
 **v1.0.0 (2025-10-23)**
 - Initial standalone executable release.
@@ -316,23 +316,23 @@ UltraCaptureV3-Distribution/
 
 ---
 
-## Support Resources.
+## Support Resources:
 
-### For End Users.
+### For End Users:
 
 - **Usage Guide:** See [Usage Guide](#usage-guide) section above.
 - **Troubleshooting:** See [Troubleshooting](#troubleshooting) section above.
 - **GitHub Repository:** https://github.com/WhiteMetagross/CRNN_Captcha_Recognition.
 - **Kaggle Dataset:** https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset.
 
-### For Developers.
+### For Developers:
 
 - **CodeBaseIndex.md** - Complete codebase structure and descriptions.
 - **InstallationAndSetup.md** - Detailed setup and installation instructions.
 - **Usage.md** - Comprehensive usage guide for all features.
 - **README.md** - Project overview and quick start.
 
-### Creator Information.
+### Creator Information:
 
 - **Creator:** Mridankan Mandal (RedZapdos123, WhiteMetagross).
 - **Project:** Project AA.
@@ -340,7 +340,7 @@ UltraCaptureV3-Distribution/
 
 ---
 
-## License.
+## License:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
@@ -348,7 +348,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-## Deployment Status.
+## Deployment Status:
 
 **Status:** PRODUCTION READY.
 
