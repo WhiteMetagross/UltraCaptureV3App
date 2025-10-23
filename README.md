@@ -2,8 +2,6 @@
 
 A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This desktop application provides a native, standalone interface for CAPTCHA text recognition with CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
 
-© 2025 UltraCaptureV3 | Created by Mridankan Mandal | Project AA.
-
 ---
 
 ## Key Features.
