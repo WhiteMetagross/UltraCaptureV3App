@@ -1,4 +1,4 @@
-# UltraCaptureV3: Advanced CAPTCHA Recognition Desktop Application
+# UltraCaptureV3: Advanced CAPTCHA Recognition Desktop Application.
 
 A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This desktop application provides a native, standalone interface for CAPTCHA text recognition with CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
 
