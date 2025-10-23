@@ -1,28 +1,30 @@
-# Installation and Setup Guide:
+# Installation and Setup Guide
 
-This guide provides step-by-step instructions for setting up and running the UltraCaptureV3 web application.
+This guide provides step-by-step instructions for setting up and running the UltraCaptureV3 desktop application. The application is a standalone PySide6-based CAPTCHA recognition system with a Fallout-themed interface.
 
-## Prerequisites:
+## Quick Links
+
+- **For End Users (Standalone Executable):** See [Distribution.md](Distribution.md) for instructions on downloading and running the pre-built executable
+- **For Developers (Building from Source):** Continue with this guide for development setup
+- **For Distribution Information:** See [Distribution.md](Distribution.md) for build scripts and distribution details
+
+## Prerequisites
 
 Before you begin, ensure you have the following installed on your system.
 
 ### Required Software:
 
-1. **Node.js** (version 18.0 or higher).
-   - Download from: https://nodejs.org/.
-   - Verify installation: `node --version`.
+1. **Python** (version 3.11 recommended, 3.8+ supported).
+   - Download from: https://www.python.org/downloads/
+   - Verify installation: `python --version`
+   - **Note:** Python 3.11 is recommended for optimal ONNX Runtime performance
 
-2. **Python** (version 3.11 recommended, 3.8+ supported).
-   - Download from: https://www.python.org/downloads/.
-   - Verify installation: `python --version`.
-   - **Note:** Python 3.11 is recommended for optimal ONNX Runtime performance.
+2. **pip** (Python package installer).
+   - Usually comes with Python
+   - Verify installation: `pip --version`
 
-3. **pip** (Python package installer).
-   - Usually comes with Python.
-   - Verify installation: `pip --version`.
-
-4. **Git** (optional, for cloning the repository).
-   - Download from: https://git-scm.com/.
+3. **Git** (optional, for cloning the repository).
+   - Download from: https://git-scm.com/
 
 ### System Requirements:
 
@@ -33,7 +35,7 @@ Before you begin, ensure you have the following installed on your system.
 
 ## Installation Steps:
 
-### Option 1: Automated Setup (Recommended):
+### Automated Setup (Recommended):
 
 The easiest way to set up the application is using the provided PowerShell script:
 
@@ -43,57 +45,52 @@ The easiest way to set up the application is using the provided PowerShell scrip
 
 #### What the setup.ps1 Script Does:
 
-The `setup.ps1` PowerShell script automates the entire setup process for both backend and frontend:
+The `setup.ps1` PowerShell script automates the entire setup process for the desktop application:
 
 **Script Functionality:**
-- Checks for Python 3.11 and Node.js installation on your system.
-- Creates a Python virtual environment in the `backend` directory.
-- Installs all backend dependencies (Flask, ONNX Runtime, Pillow, NumPy, Flask-CORS).
-- Installs all frontend dependencies (React, Vite, Tailwind CSS, Axios).
-- Verifies the ONNX model exists at `backend/models/best_model.onnx`.
-- Displays status messages for each step ([OK] for success, [ERROR] for failures).
+- Checks for Python 3.8+ installation on your system
+- Creates a Python virtual environment in the project root
+- Installs all dependencies (PySide6, ONNX Runtime, Pillow, NumPy)
+- Verifies the ONNX model exists at `resources/models/best_model.onnx`
+- Verifies all required resources are in place
+- Displays status messages for each step ([OK] for success, [ERROR] for failures)
 
 **Expected Output:**
 ```
-UltraCaptureV3 Setup Script
+UltraCaptureV3 Desktop Application Setup
 
 Checking prerequisites...
 [OK] Python 3.11 found
-[OK] Node.js found
 
-Setting up backend...
+Setting up virtual environment...
 [OK] Virtual environment created
-[OK] Backend dependencies installed
+[OK] Dependencies installed
 
-Setting up frontend...
-[OK] Frontend dependencies installed
+Verifying resources...
+[OK] ONNX model found (272.82 MB)
+[OK] Config files verified
+[OK] Images verified
 
-Verifying ONNX model...
-[OK] ONNX model found at backend/models/best_model.onnx
-
-Setup complete! You can now run .\start.ps1 to start the application.
+Setup complete! You can now run .\start.ps1 to launch the application.
 ```
 
 **When to Use:**
-- First-time setup of the project.
-- After cloning the repository.
-- When you need to reinstall dependencies.
+- First-time setup of the project
+- After cloning the repository
+- When you need to reinstall dependencies
 
 **Troubleshooting:**
-- If the script fails, check that Python 3.11 and Node.js are installed and accessible from the command line.
-- Ensure you have administrator privileges to create virtual environments.
-- If dependencies fail to install, try running the script again or use manual setup (Option 2).
+- If the script fails, check that Python 3.8+ is installed and accessible from the command line
+- Ensure you have administrator privileges to create virtual environments
+- If dependencies fail to install, try running the script again or use manual setup
 
-### Option 2: Manual Setup:
+### Manual Setup:
 
 If you prefer to set up manually or encounter issues with the automated script, follow these steps.
 
-#### Backend Setup:
+#### Step 1: Create Virtual Environment
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+1. Navigate to the project root directory
 
 2. Create a Python virtual environment:
    ```bash
@@ -110,42 +107,33 @@ If you prefer to set up manually or encounter issues with the automated script, 
      source venv/bin/activate
      ```
 
-4. Install Python dependencies (ONNX Runtime for CPU inference):
-   ```bash
-   pip install -r requirements.txt
-   ```
+#### Step 2: Install Dependencies
 
-   This will install:
-   - Flask 3.0.0 - Web framework.
-   - Flask-CORS 4.0.0 - Cross-origin resource sharing.
-   - ONNX Runtime 1.17.1 - CPU-based inference engine.
-   - Pillow 10.1.0 - Image processing.
-   - NumPy 1.24.3 - Numerical computing.
+Install Python dependencies (PySide6 and ONNX Runtime for CPU inference):
+```bash
+pip install -r requirements.txt
+```
 
-5. Verify the ONNX model exists:
-   ```bash
-   ls models/best_model.onnx
-   ```
+This will install:
+- PySide6 6.6.1 - Qt for Python GUI framework
+- ONNX Runtime 1.17.1 - CPU-based inference engine
+- Pillow 10.1.0 - Image processing
+- NumPy 1.24.3 - Numerical computing
 
-   The ONNX model should already be present in the `models/` directory. If not, contact the project maintainers.
+#### Step 3: Verify Resources
 
-#### Frontend Setup:
+Verify the ONNX model exists:
+```bash
+ls resources/models/best_model.onnx
+```
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install Node.js dependencies:
-   ```bash
-   npm install
-   ```
+The ONNX model should already be present in the `resources/models/` directory. If not, contact the project maintainers.
 
 ## Running the Application:
 
-### Option 1: Automated Start (Recommended):
+### Automated Start (Recommended):
 
-Use the provided PowerShell script to start both servers:
+Use the provided PowerShell script to launch the desktop application:
 
 ```powershell
 .\start.ps1
@@ -153,63 +141,46 @@ Use the provided PowerShell script to start both servers:
 
 #### What the start.ps1 Script Does:
 
-The `start.ps1` PowerShell script launches both the backend and frontend servers simultaneously:
+The `start.ps1` PowerShell script launches the desktop application:
 
 **Script Functionality:**
-- Activates the Python virtual environment in the `backend` directory.
-- Starts the Flask backend server on http://localhost:5000 with CPU-based ONNX inference.
-- Starts the Vite frontend development server on http://localhost:5173.
-- Displays the URLs for accessing the application.
-- Keeps both servers running until you close the terminal windows.
+- Activates the Python virtual environment
+- Launches the PySide6 desktop application with the Fallout-themed interface
+- Displays startup messages and status information
+- Keeps the application running until you close it
 
 **Expected Output:**
 ```
-UltraCaptureV3 Start Script
+UltraCaptureV3 Desktop Application
 
-Starting UltraCaptureV3...
+Activating virtual environment...
+[OK] Virtual environment activated
 
-Starting backend server (CPU-based ONNX inference)...
-[OK] Backend server starting at http://localhost:5000
-Starting frontend server...
-[OK] Frontend server starting at http://localhost:5173
+Launching application...
+[OK] Application starting
 
-Application Started!
-
-Access the application at:
-  Frontend: http://localhost:5173
-  Backend API: http://localhost:5000
-
-To stop the servers:
-  1. Close the backend PowerShell window (or press Ctrl+C)
-  2. Close the frontend PowerShell window (or press Ctrl+C)
+UltraCaptureV3 is now running!
 ```
 
 **When to Use:**
-- Every time you want to run the application.
-- After setup is complete.
-- For development and testing.
+- Every time you want to run the application
+- After setup is complete
+- For daily use
 
 **Stopping the Application:**
-- Press `Ctrl+C` in each terminal window to stop the servers.
-- Or close the terminal windows directly.
+- Close the application window directly
+- Or press `Ctrl+C` in the terminal window
 
 **Troubleshooting:**
-- If the backend fails to start, ensure the ONNX model exists at `backend/models/best_model.onnx`.
-- If the frontend fails to start, ensure all dependencies are installed with `npm install` in the frontend directory.
-- If ports 5000 or 5173 are already in use, close other applications using those ports or modify the port numbers in the respective configuration files.
+- If the application fails to start, ensure the ONNX model exists at `resources/models/best_model.onnx`
+- If you see import errors, ensure all dependencies are installed with `pip install -r requirements.txt`
+- If the application crashes, check the console output for error messages
 
-### Option 2: Manual Start:
+### Manual Start:
 
-If you prefer to start the servers manually:
+If you prefer to start the application manually:
 
-#### Start the Backend Server:
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Activate the virtual environment (if not already activated):
+1. Activate the virtual environment (if not already activated):
    - **Windows:**
      ```bash
      venv\Scripts\activate
@@ -219,115 +190,122 @@ If you prefer to start the servers manually:
      source venv/bin/activate
      ```
 
-3. Start the Flask server:
+2. Launch the desktop application:
    ```bash
-   python app.py
+   python main.py
    ```
 
-   The backend API will be available at http://localhost:5000.
-
-#### Start the Frontend Server:
-
-1. Open a new terminal window.
-
-2. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-
-   The frontend will be available at http://localhost:5173.
+   The application will open with the Fallout-themed interface.
 
 ## Accessing the Application:
 
-Once both servers are running:
+Once the application is running:
 
-1. Open your web browser.
-2. Navigate to http://localhost:5173.
-3. You should see the UltraCaptureV3 homepage.
-
-## Stopping the Application:
-
-### If using the automated start script:
-- Press `Ctrl+C` in each terminal window to stop the servers.
-
-### If running manually:
-- Press `Ctrl+C` in the terminal running the backend server, and press `Ctrl+C` in the terminal running the frontend server.
+1. The desktop window will open automatically
+2. You will see the Fallout-themed interface with four tabs: Home, About, Architecture, and Inference
+3. Use the drag-and-drop area or browse button to select a CAPTCHA image
+4. The model will process the image and display the predicted text
 
 ## Troubleshooting:
 
-### Backend Issues:
+### Application Launch Issues:
 
-**Problem:** `ModuleNotFoundError` when starting the backend.
+**Problem:** `ModuleNotFoundError` when starting the application.
 - **Solution:** Ensure you've activated the virtual environment and installed all dependencies with `pip install -r requirements.txt`.
 
-**Problem:** `FileNotFoundError: ONNX model not found at models/best_model.onnx`.
-- **Solution:** Ensure the ONNX model file exists in the `models/` directory, and the model should be pre-exported and included with the project.
+**Problem:** `FileNotFoundError: ONNX model not found at resources/models/best_model.onnx`.
+- **Solution:** Ensure the ONNX model file exists in the `resources/models/` directory. The model should be pre-exported and included with the project.
+
+**Problem:** `ImportError: No module named 'PySide6'`.
+- **Solution:** Install PySide6 with `pip install PySide6==6.6.1`.
 
 **Problem:** `ImportError: No module named 'onnxruntime'`.
 - **Solution:** Install ONNX Runtime with `pip install onnxruntime==1.17.1`.
 
-**Problem:** Port 5000 is already in use.
-- **Solution:** Either stop the process using port 5000, or modify the port in `backend/app.py` (change the last line to use a different port).
+**Problem:** Application window doesn't appear or crashes immediately.
+- **Solution:** Check the console output for error messages. Ensure all dependencies are installed and the ONNX model exists.
+
+### Performance Issues:
 
 **Problem:** Slow inference times on CPU.
 - **Solution:** This is normal for CPU inference. ONNX Runtime is optimized for CPU performance, and typical inference times are 30-100ms per image.
 
-### Frontend Issues:
+**Problem:** Application is slow or unresponsive.
+- **Solution:** Ensure your system has at least 4GB of RAM available. Close other applications to free up resources.
 
-**Problem:** `npm install` fails with dependency conflicts.
-- **Solution:** Try running `npm install --legacy-peer-deps`.
+### Setup Issues:
 
-**Problem:** Port 5173 is already in use.
-- **Solution:** Vite will automatically try the next available port, and check the terminal output for the actual URL.
+**Problem:** `setup.ps1` script fails to run.
+- **Solution:** Ensure you have administrator privileges. Try running PowerShell as Administrator and then run the script again.
 
-**Problem:** "Failed to get prediction" error when uploading images.
-- **Solution:** Ensure the backend server is running on http://localhost:5000, and check the browser console for detailed error messages.
+**Problem:** Python is not found or not in PATH.
+- **Solution:** Ensure Python is installed and added to your system PATH. Restart your terminal after installing Python.
 
 ### General Issues:
 
-**Problem:** Images not displaying on the homepage.
-- **Solution:** Ensure the profile images (`redZapdos.jpg` and `WhiteMetagross.jpg`) are present in the `frontend/public` directory.
+**Problem:** Images not displaying in the application.
+- **Solution:** Ensure the profile images are present in the `resources/images/` directory.
 
-**Problem:** CORS errors in the browser console.
-- **Solution:** Ensure Flask-CORS is installed in the backend (`pip install Flask-CORS`), and the backend is running.
+**Problem:** Application crashes when loading an image.
+- **Solution:** Ensure the image is in a supported format (PNG, JPG, JPEG) and is not corrupted. Check the console output for error messages.
 
 ## Environment Configuration:
 
-### Backend Configuration:
+### Application Configuration:
 
-The backend configuration is stored in `backend/config.json`. Key settings include:
+The application configuration is stored in `config.py`. Key settings include:
 
-- `data.image_height`: Input image height (default: 64).
-- `data.image_width`: Input image width (default: 256).
-- `data.charset`: Character set for predictions.
-- `model.*`: Model architecture hyperparameters.
+- `BASE_DIR`: Base directory for the application
+- `RESOURCES_DIR`: Path to resources directory
+- `MODEL_PATH`: Path to the ONNX model file
+- `CONFIG_PATH`: Path to model configuration file
 
-### Frontend Configuration:
+### Model Configuration:
 
-The frontend connects to the backend API at `http://localhost:5000`. If you need to change this:
+The model configuration is stored in `resources/config/model_config.json`. Key settings include:
 
-1. Open `frontend/src/App.tsx`.
-2. Find the `axios.post` call in the `handlePredict` function.
-3. Update the URL to match your backend server address.
+- `data.image_height`: Input image height (default: 64)
+- `data.image_width`: Input image width (default: 256)
+- `data.charset`: Character set for predictions
+- `model.*`: Model architecture hyperparameters
 
-## Next Steps:
+---
+
+## Building the Executable
+
+For developers who want to create a standalone executable for distribution, see [Distribution.md - Building from Source](Distribution.md#building-from-source) for detailed instructions on using the build scripts:
+
+- **`build_exe.ps1`** - PowerShell script for building the executable
+- **`build.py`** - Python script for building the executable
+- **`create_distribution.ps1`** - Script for creating the distribution package
+
+The build process creates a standalone Windows executable that requires no Python installation.
+
+---
+
+## Next Steps
 
 After successful installation and setup:
 
-1. Read the [Usage Guide](Usage.md) to learn how to use the application.
-2. Check the [API Documentation](API.md) for details on the backend API.
-3. Explore the [Codebase Index](CodeBaseIndex.md) to understand the project structure.
+1. **Launch the Application**: Run `.\start.ps1` to launch the desktop application
+2. **Explore the Interface**: Navigate through the four tabs (Home, About, Architecture, Inference)
+3. **Test CAPTCHA Recognition**: Upload a CAPTCHA image and see the model's prediction
+4. **Check Performance**: View inference time and accuracy metrics
+5. **Build Executable (Optional)**: See [Distribution.md](Distribution.md#building-from-source) for instructions on creating a standalone executable
 
-## Support:
+For detailed usage instructions, see the [Usage Guide](Usage.md).
+
+---
+
+## Support
 
 If you encounter issues not covered in this guide:
 
-1. Check the GitHub repository for known issues: https://github.com/WhiteMetagross/CRNN_Captcha_Recognition.
-2. Review the original README.md for additional context.
-3. Ensure all prerequisites are correctly installed and up to date.
+1. Check the [Distribution.md](Distribution.md#troubleshooting) troubleshooting guide for common issues
+2. Check the GitHub repository for known issues: https://github.com/WhiteMetagross/CRNN_Captcha_Recognition
+3. Review the README.md for additional context
+4. Ensure all prerequisites are correctly installed and up to date
+5. Check the [Codebase Index](CodeBaseIndex.md) for technical details
+
+For end-user support and troubleshooting, see [Distribution.md - Troubleshooting](Distribution.md#troubleshooting).
 

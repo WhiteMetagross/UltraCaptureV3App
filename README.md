@@ -1,32 +1,115 @@
-# UltraCaptureV3 - Advanced CAPTCHA Recognition Web Application:
+# UltraCaptureV3 - Advanced CAPTCHA Recognition Desktop Application
 
-A modern, retro-styled web application for recognizing CAPTCHA images using a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. The application features CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
+A professional-grade CAPTCHA recognition system featuring a hybrid CRNN (Convolutional Recurrent Neural Network) architecture with attention mechanisms. This desktop application provides a native, standalone interface for CAPTCHA text recognition with CPU-based ONNX inference for fast, cross-platform deployment without GPU requirements.
 
 © 2025 UltraCaptureV3 | Created by Mridankan Mandal | Project AA.
 
-![Home Section](visuals/HomeSection.png)
+---
 
-The UltraCaptureV3 application features a retro-styled interface with a vintage aesthetic, displaying the project title, accuracy metrics, and creator information on the home page.
+## 🎯 Key Features
+
+- **High Accuracy**: Achieves **95.08% Character Accuracy** and **86.37% Sequence Accuracy** on test sets
+- **Advanced Architecture**: Hybrid CRNN combining ResNet-style CNN backbone, CBAM attention, Bi-LSTM, and Transformer Encoder
+- **CPU-Based Inference**: Uses ONNX Runtime for fast, optimized CPU inference (30-100ms per image) without GPU requirements
+- **Native Desktop Application**: Professional PySide6 interface with Fallout-themed design
+- **Fallout-Themed UI**: Unique retro aesthetic with green (#00FF41), purple (#9D4EDD), and blue (#0096FF) color palette
+- **Easy Setup**: Automated setup with PowerShell scripts for environment configuration
+- **Cross-Platform**: Works on Windows, macOS, and Linux with Python 3.11+
+- **Standalone Executable**: Can be packaged as a standalone .exe file for distribution without Python installation
 
 ---
 
-## Features:
+## 📁 Project Structure
 
-- **High Accuracy**: Achieves **95.08% Character Accuracy** and **86.37% Sequence Accuracy** on test sets.
-- **Advanced Architecture**: Hybrid CRNN combining ResNet-style CNN backbone, CBAM attention, Bi-LSTM, and Transformer Encoder.
-- **CPU-Based Inference**: Uses ONNX Runtime for fast, optimized CPU inference (30-100ms per image) without GPU requirements.
-- **Retro/Vintage Design**: Beautiful single-page application with retro aesthetic, dark/light theme toggle, and responsive layout.
-- **Easy Deployment**: Simple setup with PowerShell scripts for automated environment configuration.
-- **Web-Based Interface**: Intuitive drag-and-drop image upload with real-time predictions and inference timing.
-- **Cross-Platform**: Works on Windows, macOS, and Linux with Python 3.11+ and Node.js.
-
-![Live Inference Section](visuals/DarkModeLiveInferenceSection.png)
-
-The Inference section provides an interactive drag-and-drop interface for uploading CAPTCHA images, displaying predictions, and showing inference timing information in real-time.
+```
+UltraCaptureV3/
+├── main.py                    # Application entry point
+├── config.py                  # Configuration management
+├── requirements.txt           # Python dependencies
+├── setup.ps1                  # Setup automation script
+├── start.ps1                  # Launch script
+│
+├── core/                      # Core inference logic
+│   ├── model_manager.py       # ONNX model management
+│   ├── image_processor.py     # Image preprocessing
+│   ├── ctc_decoder.py         # CTC decoding
+│   └── config_loader.py       # Configuration loader
+│
+├── ui/                        # User interface
+│   ├── main_window.py         # Main application window
+│   ├── tabs/                  # Tab implementations
+│   │   ├── home_tab.py        # Home tab with metrics
+│   │   ├── about_tab.py       # About tab with features
+│   │   ├── architecture_tab.py # Architecture details
+│   │   └── inference_tab.py   # Live inference interface
+│   ├── widgets/               # Custom reusable widgets
+│   │   ├── metric_card.py
+│   │   ├── profile_card.py
+│   │   ├── image_upload_widget.py
+│   │   ├── prediction_display.py
+│   │   └── theme_toggle.py
+│   └── styles/                # QSS stylesheets
+│       └── fallout_theme.qss  # Fallout-themed styling
+│
+├── utils/                     # Utility functions
+│   ├── logger.py              # Logging configuration
+│   ├── file_utils.py          # File operations
+│   └── image_utils.py         # Image utilities
+│
+├── resources/                 # Application resources
+│   ├── models/
+│   │   └── best_model.onnx    # ONNX model (273MB)
+│   ├── config/
+│   │   └── model_config.json  # Model configuration
+│   └── images/                # Profile images
+│
+├── venv/                      # Python virtual environment
+├── Usage.md                   # Usage guide
+├── InstallationAndSetup.md    # Installation instructions
+├── CodeBaseIndex.md           # Complete file index
+├── API.md                     # API documentation (reference)
+└── LICENSE                    # MIT License
+```
 
 ---
 
-## Model Architecture:
+## 🚀 Quick Start
+
+### For End Users (Standalone Executable)
+
+If you want to use the standalone executable without Python installation:
+
+1. Build the executable using the build scripts (see [Distribution.md - Building from Source](Distribution.md#building-from-source))
+2. Extract the generated `UltraCaptureV3-Distribution.zip` file to your desired location
+3. Double-click `UltraCaptureV3.exe` to launch the application
+
+**See [Distribution.md](Distribution.md) for detailed instructions and troubleshooting.**
+
+### For Developers (Development Setup)
+
+**First Time Setup:**
+```powershell
+.\setup.ps1
+```
+
+**Launch Application:**
+```powershell
+.\start.ps1
+```
+
+The application will launch with the Fallout-themed interface ready for CAPTCHA recognition.
+
+**Features:**
+- Drag-and-drop image upload or file browser selection
+- Real-time CAPTCHA prediction with inference timing
+- Four informative tabs: Home, About, Architecture, and Inference
+- Professional Fallout-themed interface with retro aesthetic
+
+**For detailed setup instructions, see [InstallationAndSetup.md](InstallationAndSetup.md).**
+
+---
+
+## 🏗️ Model Architecture
 
 The model is a custom-built Convolutional Recurrent Neural Network (CRNN) that integrates multiple advanced concepts for maximum accuracy:
 
@@ -71,13 +154,14 @@ The performance metrics table displays the model's accuracy on validation and te
 
 ---
 
-## 🚀 Quick Start:
+## 🚀 Installation & Setup:
 
 ### Prerequisites:
 
-- **Python** 3.11 (recommended) or 3.8+.
-- **Node.js** 18.0 or higher.
-- **Git** (optional, for cloning the repository).
+- **Python** 3.11 (recommended) or 3.8+
+- **Windows, macOS, or Linux** operating system
+- **At least 500MB** free disk space
+- **Git** (optional, for cloning the repository)
 
 ### Installation (Automated):
 
@@ -88,92 +172,79 @@ The easiest way to set up the application is using the provided PowerShell scrip
 ```
 
 This script will automatically:
-- Check for Python and Node.js installation.
-- Create a Python virtual environment.
-- Install all backend dependencies (ONNX Runtime, Flask, etc.).
-- Install all frontend dependencies.
-- Verify the ONNX model exists.
+- Check for Python installation
+- Create a Python virtual environment
+- Install all dependencies (PySide6, ONNX Runtime, Pillow, NumPy)
+- Verify the ONNX model exists
+- Verify all resources are in place
 
 ### Running the Application:
 
-Start both the backend and frontend servers with:
+Launch the desktop application with:
 
 ```powershell
 .\start.ps1
 ```
 
-Then open your browser and navigate to:
-```
-http://localhost:5173
-```
+The application will open with the Fallout-themed interface ready for use.
 
 For detailed setup and usage instructions, see:
-- **[Installation and Setup Guide](InstallationAndSetup.md)** - Complete setup instructions.
-- **[Usage Guide](Usage.md)** - How to use the web application.
-- **[API Documentation](API.md)** - Backend API reference.
-- **[Codebase Index](CodeBaseIndex.md)** - Project structure and file descriptions.
+- **[Distribution Guide](Distribution.md)** - Standalone executable and distribution information
+- **[Installation and Setup Guide](InstallationAndSetup.md)** - Complete setup instructions for development
+- **[Usage Guide](Usage.md)** - How to use the desktop application
+- **[Codebase Index](CodeBaseIndex.md)** - Project structure and file descriptions
 
 ---
 
-## 📁 Project Structure:
+## 💡 Technology Stack
 
-```
-ProjectAAWebsite/
-├── frontend/                   # React + Vite web application
-│   ├── src/
-│   │   ├── App.tsx            # Main application component
-│   │   ├── App.css            # Application styles
-│   │   ├── index.css          # Global styles
-│   │   └── main.tsx           # Entry point
-│   ├── public/                # Static assets
-│   ├── package.json           # Frontend dependencies
-│   ├── vite.config.ts         # Vite configuration
-│   └── tailwind.config.js     # Tailwind CSS configuration
-│
-├── backend/                    # Flask API with ONNX Runtime
-│   ├── app.py                 # Flask application
-│   ├── models/
-│   │   └── best_model.onnx    # ONNX model for inference
-│   ├── config.json            # Model configuration
-│   ├── requirements.txt        # Backend dependencies
-│   └── export_to_onnx.py      # ONNX export script (reference)
-│
-├── InstallationAndSetup.md    # Installation guide
-├── Usage.md                   # User guide
-├── API.md                     # API documentation
-├── CodeBaseIndex.md           # Codebase structure
-├── setup.ps1                  # Automated setup script
-├── start.ps1                  # Application startup script
-└── README.md                  # This file
-```
+### Desktop Application (PySide6)
+- **Framework**: PySide6 6.6.1 (Qt for Python)
+- **Inference Engine**: ONNX Runtime 1.17.1 (CPU-based)
+- **Image Processing**: Pillow 10.1.0
+- **Numerical Operations**: NumPy 1.24.3
+- **Design**: Fallout-Themed UI with QSS Stylesheets
+- **Python Version**: 3.8+
+
+### Model & Inference
+- **Model Format**: ONNX (Open Neural Network Exchange)
+- **Model Size**: ~273MB
+- **Inference Speed**: 30-100ms per image (CPU)
+- **Architecture**: Hybrid CRNN with attention mechanisms
+- **Supported Characters**: 62 (0-9, A-Z, a-z)
 
 ---
 
-## 🔗 Resources:
+## 📊 Model Performance
 
-- **GitHub Repository**: [CRNN_Captcha_Recognition](https://github.com/WhiteMetagross/CRNN_Captcha_Recognition).
-- **Dataset**: [Huge CAPTCHA Dataset on Kaggle](https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset).
-- **Creator**: Mridankan Mandal (RedZapdos123, WhiteMetagross).
+| Metric             | Validation Set | Test Set |
+| ------------------ | :------------: | :------: |
+| Sequence Accuracy  |     86.4%      | 86.37%   |
+| Character Accuracy |     95.1%      | 95.08%   |
 
----
-
-## 💡 Technology Stack:
-
-**Frontend:**
-- React 19 with TypeScript.
-- Vite 7 (build tool).
-- Tailwind CSS 3 (styling).
-- Axios (HTTP client).
-
-**Backend:**
-- Flask 3.0.0 (web framework).
-- ONNX Runtime 1.17.1 (CPU-based inference).
-- Pillow 10.1.0 (image processing).
-- NumPy 1.24.3 (numerical operations).
+**Inference Time**: 30-100ms per image (CPU)
+**Model Size**: 273MB (ONNX format)
 
 ---
 
-## 📝 License and Attribution:
+## 🔗 Resources
+
+- **GitHub Repository**: [CRNN_Captcha_Recognition](https://github.com/WhiteMetagross/CRNN_Captcha_Recognition)
+- **Dataset**: [Huge CAPTCHA Dataset on Kaggle](https://www.kaggle.com/datasets/redzapdos123/huge-captcha-dataset)
+- **Creator**: Mridankan Mandal (RedZapdos123, WhiteMetagross)
+
+---
+
+## 📖 Documentation
+
+- **[Installation and Setup Guide](InstallationAndSetup.md)** - Detailed setup instructions for the desktop application
+- **[Usage Guide](Usage.md)** - How to use the desktop application features
+- **[Codebase Index](CodeBaseIndex.md)** - Complete file structure and descriptions
+- **[API Documentation](API.md)** - Reference documentation (for historical context)
+
+---
+
+## 📝 License and Attribution
 
 This project is created by **Mridankan Mandal** as part of **Project AA**.
 
@@ -181,14 +252,16 @@ The model was trained on the **Huge CAPTCHA Dataset** available on Kaggle.
 
 © 2025 UltraCaptureV3. All rights reserved.
 
+Licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
 ---
 
-## 🆘 Support and Troubleshooting:
+## 🆘 Support and Troubleshooting
 
 For setup issues, see the [Installation and Setup Guide](InstallationAndSetup.md).
 
 For usage questions, see the [Usage Guide](Usage.md).
 
-For API-related questions, see the [API Documentation](API.md).
-
 For technical details, see the [Codebase Index](CodeBaseIndex.md).
+
+For issues or questions, please refer to the documentation files or check the GitHub repository.

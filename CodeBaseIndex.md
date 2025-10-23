@@ -1,306 +1,483 @@
-# Codebase Index:
+# Codebase Index
 
-This document provides a comprehensive overview of the UltraCaptureV3 project structure, describing each major file and folder.
+This document provides a comprehensive overview of the UltraCaptureV3 desktop application project structure, describing each major file and folder.
 
-## Directory Structure:
+## Documentation Files
+
+- **[README.md](README.md)** - Project overview and quick start guide
+- **[Distribution.md](Distribution.md)** - Standalone executable distribution guide, build instructions, and troubleshooting
+- **[InstallationAndSetup.md](InstallationAndSetup.md)** - Detailed setup and installation instructions for development
+- **[Usage.md](Usage.md)** - Comprehensive usage guide for the desktop application
+- **[CodeBaseIndex.md](CodeBaseIndex.md)** - This file: complete codebase structure and descriptions
+
+## Directory Structure
 
 ```
-ProjectAAWebsite/
-├── frontend/                   # React + Vite frontend application.
-│   ├── public/                 # Static assets.
-│   │   ├── redZapdos.jpg       # Profile image for RedZapdos123.
-│   │   ├── WhiteMetagross.jpg  # Profile image for WhiteMetagross.
-│   │   └── vite.svg            # Vite logo.
-│   ├── src/                    # Source code.
-│   │   ├── lib/                # Utility libraries.
-│   │   │   └── utils.ts        # Utility functions (cn for className merging).
-│   │   ├── App.css             # Application styles.
-│   │   ├── App.tsx             # Main application component.
-│   │   ├── index.css           # Global styles with Tailwind directives.
-│   │   └── main.tsx            # Application entry point.
-│   ├── eslint.config.js        # ESLint configuration.
-│   ├── index.html              # HTML entry point.
-│   ├── package.json            # Frontend dependencies and scripts.
-│   ├── postcss.config.js       # PostCSS configuration for Tailwind.
-│   ├── tailwind.config.js      # Tailwind CSS configuration.
-│   ├── tsconfig.json           # TypeScript configuration.
-│   ├── tsconfig.app.json       # TypeScript app-specific configuration.
-│   ├── tsconfig.node.json      # TypeScript Node-specific configuration.
-│   └── vite.config.ts          # Vite build configuration.
+UltraCaptureV3/
+├── main.py                     # Application entry point
+├── config.py                   # Configuration management
+├── requirements.txt            # Application dependencies
+├── setup.ps1                   # Setup automation script
+├── start.ps1                   # Launch script
 │
-├── backend/                    # Flask backend API with ONNX Runtime.
-│   ├── models/                 # Model files.
-│   │   └── best_model.onnx     # ONNX exported model for CPU inference (273MB).
-│   ├── app.py                  # Flask application with ONNX Runtime inference.
-│   ├── config.json             # Model configuration.
-│   ├── requirements.txt        # Backend Python dependencies (ONNX Runtime).
-│   └── export_to_onnx.py       # Script to export PyTorch model to ONNX format (reference).
+├── core/                       # Core inference logic
+│   ├── __init__.py
+│   ├── model_manager.py        # ONNX model management
+│   ├── image_processor.py      # Image preprocessing
+│   ├── ctc_decoder.py          # CTC decoding
+│   └── config_loader.py        # Configuration loader
 │
-├── InstallationAndSetup.md     # Installation and setup guide.
-├── CodeBaseIndex.md            # This file - codebase structure documentation.
-├── Usage.md                    # User guide for the web application.
-├── API.md                      # Backend API documentation.
-├── setup.ps1                   # PowerShell script for automated setup.
-├── start.ps1                   # PowerShell script to start the application.
-├── README.md                   # Original project README (reference).
-└── config.json                 # Root configuration file (reference).
+├── ui/                         # User interface
+│   ├── __init__.py
+│   ├── main_window.py          # Main window
+│   ├── tabs/                   # Tab implementations
+│   │   ├── home_tab.py
+│   │   ├── about_tab.py
+│   │   ├── architecture_tab.py
+│   │   └── inference_tab.py
+│   ├── widgets/                # Custom widgets
+│   │   ├── metric_card.py
+│   │   ├── profile_card.py
+│   │   ├── image_upload_widget.py
+│   │   └── prediction_display.py
+│   └── styles/                 # QSS stylesheets
+│       ├── fallout_theme.qss
+│       ├── colors.py
+│       └── fonts.py
+│
+├── utils/                      # Utility functions
+│   ├── __init__.py
+│   ├── logger.py               # Logging configuration
+│   ├── file_utils.py           # File operations
+│   └── image_utils.py          # Image utilities
+│
+├── resources/                  # Application resources
+│   ├── models/
+│   │   └── best_model.onnx     # ONNX model for CPU inference (273MB)
+│   ├── config/
+│   │   └── model_config.json   # Model configuration
+│   └── images/                 # Profile images
+│
+├── build_exe.ps1               # PowerShell script for building executable
+├── build.py                    # Python script for building executable
+├── create_distribution.ps1     # Script for creating distribution package
+│
+├── README.md                   # Project overview
+├── Distribution.md             # Distribution guide and build instructions
+├── Usage.md                    # Usage guide for desktop application
+├── InstallationAndSetup.md     # Installation instructions for development
+├── CodeBaseIndex.md            # This file
+├── LICENSE                     # MIT License
+└── .gitignore                  # Git ignore rules
 ```
 
-## Frontend Components:
+**Note:** The following directories are created during the build process and are excluded from version control:
+- `build/` - PyInstaller build artifacts
+- `dist/` - Compiled executable and distribution package
+- `__pycache__/` - Python bytecode cache
+- `venv/` - Python virtual environment
+
+These directories are listed in `.gitignore` to keep the repository clean.
+
+## Desktop Application Components:
 
 ### Main Application Files:
 
-#### `frontend/src/App.tsx`:
-The main React component containing the entire single-page application with four sections and retro/vintage aesthetic design:
+#### `main.py`:
+The main entry point for the desktop application:
+- Initializes the PySide6 application
+- Creates the main window
+- Loads the Fallout-themed interface
+- Handles application lifecycle
 
-1. **Hero/Home Section:**
-   - Project title and tagline with retro typography.
-   - Accuracy metrics display (95.08% character, 86.37% sequence).
-   - Creator credit and profile cards with vintage styling.
+#### `config.py`:
+Configuration management for the application:
+- Base directory paths
+- Resources directory configuration
+- Model path configuration
+- Configuration file paths
+- Logging configuration
 
-2. **About Section:**
-   - Project overview and description.
-   - Key features list with retro borders and amber color scheme.
-   - Links to GitHub repository and Kaggle dataset.
-   - Performance metrics table with vintage styling.
-   - Model performance and inference speed information.
+### Build and Distribution Scripts:
 
-3. **Architecture Section:**
-   - Detailed explanation of the CRNN architecture.
-   - Visual representation of model components with retro cards.
-   - Technical specifications and hyperparameters.
-   - Amber color palette with no rounded corners.
+#### `build_exe.ps1`:
+PowerShell script for building the standalone executable:
+- Activates the Python virtual environment
+- Cleans previous build artifacts
+- Runs PyInstaller with optimized settings
+- Creates `dist/UltraCaptureV3.exe` (470+ MB)
+- Includes all dependencies and the ONNX model
 
-4. **Inference Section:**
-   - Live inference demonstration interface with retro styling.
-   - Drag-and-drop image upload with vintage borders.
-   - Prediction display with inference time.
-   - Error handling with retro alert boxes.
+#### `build.py`:
+Python script for building the standalone executable:
+- Alternative to `build_exe.ps1`
+- Same functionality as the PowerShell script
+- Cross-platform compatible
+- Useful for non-Windows environments
 
-**Key Features:**
-- Dark/light theme toggle with retro color scheme.
-- Smooth scroll navigation.
-- Responsive design for mobile, tablet, and desktop.
-- Axios integration for API calls to ONNX Runtime backend.
-- State management with React hooks.
-- Retro/vintage aesthetic: Amber color palette, Georgia serif font, 4px borders, box shadows, no rounded corners.
+#### `create_distribution.ps1`:
+PowerShell script for creating the distribution package:
+- Copies the executable to a distribution folder
+- Includes README.md and LICENSE files
+- Creates a ZIP file for easy distribution
+- Generates `dist/UltraCaptureV3-Distribution.zip`
 
-#### `frontend/src/index.css`:
-Global styles with Tailwind CSS directives:
-- Base Tailwind imports (`@tailwind base`, `@tailwind components`, `@tailwind utilities`).
-- CSS custom properties for theming.
-- Global resets and base styles.
-- Smooth scrolling behavior.
+### Core Inference Logic:
 
-#### `frontend/src/App.css`:
-Application-specific styles:
-- Root container styling.
+#### `core/model_manager.py`:
+ONNX model management:
+- Loads the ONNX model from `resources/models/best_model.onnx`
+- Manages model inference sessions
+- Handles model initialization and cleanup
+- Provides prediction interface
 
-#### `frontend/src/lib/utils.ts`:
-Utility functions:
-- `cn()`: Merges className strings using clsx and tailwind-merge for conditional styling.
+#### `core/image_processor.py`:
+Image preprocessing pipeline:
+- Loads images from file paths
+- Resizes images to 64×256 pixels
+- Normalizes pixel values
+- Converts to appropriate tensor format for the model
+
+#### `core/ctc_decoder.py`:
+CTC (Connectionist Temporal Classification) decoding:
+- Decodes model output to text
+- Handles greedy decoding strategy
+- Maps character indices to actual characters
+- Supports 62-character charset (0-9, A-Z, a-z)
+
+#### `core/config_loader.py`:
+Configuration file loader:
+- Loads model configuration from JSON
+- Provides access to model hyperparameters
+- Manages character set and encoding
+
+### User Interface:
+
+#### `ui/main_window.py`:
+Main application window:
+- Creates the main PySide6 window
+- Sets up the tab widget with four tabs
+- Manages window properties and styling
+- Handles theme switching
+
+#### `ui/tabs/home_tab.py`:
+Home tab implementation:
+- Displays project title and tagline
+- Shows accuracy metrics (95.08% character, 86.37% sequence)
+- Displays creator information
+- Shows profile cards with images
+
+#### `ui/tabs/about_tab.py`:
+About tab implementation:
+- Project overview and description
+- Key features list with complete sentences
+- External links (GitHub, Kaggle)
+- Performance metrics table
+- Training metrics visualization
+
+#### `ui/tabs/architecture_tab.py`:
+Architecture tab implementation:
+- CRNN model architecture explanation
+- Model components breakdown with descriptions
+- Hyperparameters display
+- Technical specifications
+- Three-stage architecture flow visualization
+
+#### `ui/tabs/inference_tab.py`:
+Inference tab implementation:
+- Drag-and-drop image upload interface
+- File browser for image selection
+- Image preview display
+- Predict button for running inference
+- Results display with prediction text and inference time
+- Clear button to reset for new image
+
+### Custom Widgets:
+
+#### `ui/widgets/metric_card.py`:
+Metric card widget:
+- Displays accuracy metrics in card format
+- Shows metric name and value
+- Styled with Fallout theme colors
+
+#### `ui/widgets/profile_card.py`:
+Profile card widget:
+- Displays profile image and name
+- Used for creator information
+- Styled with Fallout theme
+
+#### `ui/widgets/image_upload_widget.py`:
+Image upload widget:
+- Drag-and-drop area for image upload
+- Browse button for file selection
+- Supported format information
+- Upload instructions with complete sentences
+
+#### `ui/widgets/prediction_display.py`:
+Prediction display widget:
+- Shows predicted CAPTCHA text in large, bold font
+- Displays model inference time
+- Color-coded for success/error states
+- Uses complete sentence labels
+
+
+
+### Styling:
+
+#### `ui/styles/fallout_theme.qss`:
+QSS stylesheet with Fallout-themed design:
+- Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme
+- Courier New monospace font for retro aesthetic
+- Enhanced button styling with padding and hover effects
+- Improved tab styling with better spacing
+- Enhanced frame and card styling with hover effects
+- Improved scrollbar styling
+- Enhanced text input styling with hover states
+- Improved table styling with better padding and hover effects
+
+#### `ui/styles/colors.py`:
+Color definitions:
+- Fallout theme color constants
+- Primary, secondary, and accent colors
+- Text and background colors
+
+#### `ui/styles/fonts.py`:
+Font definitions:
+- Courier New monospace font configuration
+- Font sizes for different UI elements
+
+### Utility Functions:
+
+#### `utils/logger.py`:
+Logging configuration:
+- Sets up application logging
+- Logs to console and file
+- Configurable log levels
+
+#### `utils/file_utils.py`:
+File operation utilities:
+- File path handling
+- Directory creation
+- File existence checking
+
+#### `utils/image_utils.py`:
+Image utility functions:
+- Image loading and validation
+- Image format checking
+- Image dimension utilities
 
 ### Configuration Files:
 
-#### `frontend/package.json`:
-Frontend dependencies and scripts:
-- **Dependencies:** React, React DOM, Axios, Lucide React, Tailwind utilities.
-- **Dev Dependencies:** Vite, TypeScript, ESLint, Tailwind CSS, PostCSS.
-- **Scripts:**
-  - `dev`: Start development server.
-  - `build`: Build for production.
-  - `preview`: Preview production build.
+#### `requirements.txt`:
+Python dependencies:
+- PySide6 6.6.1 - Qt for Python GUI framework
+- ONNX Runtime 1.17.1 - CPU-based inference engine
+- Pillow 10.1.0 - Image processing
+- NumPy 1.24.3 - Numerical computing
 
-#### `frontend/tailwind.config.js`:
-Tailwind CSS configuration:
-- Content paths for purging unused styles.
-- Dark mode configuration (class-based).
-- Custom color palette (purple, blue, red shades).
+#### `setup.ps1`:
+Setup automation script:
+- Checks for Python installation
+- Creates virtual environment
+- Installs dependencies
+- Verifies ONNX model
+- Verifies resources
 
-#### `frontend/vite.config.ts`:
-Vite build tool configuration:
-- React plugin integration.
-- Build optimizations.
+#### `start.ps1`:
+Launch script:
+- Activates virtual environment
+- Launches the desktop application
+- Displays status messages
 
-#### `frontend/tsconfig.json`:
-TypeScript compiler configuration:
-- Strict type checking.
-- JSX support for React.
-- Module resolution settings.
+### Resources:
 
-## Backend Components:
+#### `resources/models/best_model.onnx`:
+ONNX model file (273MB):
+- Pre-trained CRNN model for CAPTCHA recognition
+- CPU-optimized inference
+- 95.08% character accuracy, 86.37% sequence accuracy
 
-### API Server:
-
-#### `backend/app.py`:
-Flask application with ONNX Runtime CPU inference (no GPU required):
-
-**Endpoints:**
-- `POST /api/predict`: Accepts image upload, returns prediction and inference time (30-100ms).
-- `GET /api/health`: Health check endpoint returns model status.
-
-**Key Functions:**
-- `preprocess_image()`: Resizes image to 64×256, normalizes with ImageNet stats, returns NumPy array.
-- `ctc_decode()`: Decodes CTC predictions using greedy decoding with NumPy operations.
-
-**Features:**
-- CORS enabled for frontend communication.
-- Comprehensive error handling.
-- Image validation (PNG, JPG, JPEG).
-- ONNX Runtime session with CPU provider for fast inference.
-- No GPU required - optimized for CPU performance.
-- Inference time: 30-100ms per image on modern CPUs.
-
-### Model Files:
-
-#### `backend/models/best_model.onnx`:
-ONNX exported model for CPU-based inference:
-- Model size: ~273MB.
-- Optimized for ONNX Runtime CPU inference.
-- Input shape: (1, 3, 64, 256) - batch_size=1, channels=3, height=64, width=256.
-- Output: CTC predictions for CAPTCHA text recognition.
-- Inference time: 30-100ms per image on modern CPUs.
-
-#### `backend/export_to_onnx.py`:
-Reference script to convert PyTorch model to ONNX format (for reference only):
-- Loads checkpoint from PyTorch model.
-- Exports to ONNX format for CPU inference.
-- Uses opset version 14 for compatibility.
-- Note: The ONNX model is pre-exported and included with the project.
-
-### Configuration:
-
-#### `backend/config.json`:
+#### `resources/config/model_config.json`:
 Model configuration:
-- **Data:** Image dimensions (64×256), charset (62 characters).
-- **Model:** Hidden size (512), attention heads (8), layers (4), dropout (0.1).
-- **Inference:** ONNX model path and inference settings.
+- Image dimensions (64×256)
+- Character set (62 characters)
+- Model hyperparameters
 
-#### `backend/requirements.txt`:
-Python dependencies for ONNX Runtime CPU inference:
-- Flask 3.0.0: Web framework.
-- Flask-CORS 4.0.0: Cross-origin resource sharing support.
-- onnxruntime 1.17.1: ONNX model inference engine (CPU-optimized).
-- Pillow 10.1.0: Image processing and manipulation.
-- numpy 1.24.3: Numerical operations and array handling.
-- Note: PyTorch is NOT required for inference (only for model export).
+#### `resources/images/`:
+Profile images:
+- redZapdos.jpg - Profile image
+- WhiteMetagross.jpg - Profile image
+- TrainingMetrics.png - Training metrics visualization
 
-## Documentation Files:
+## Key Features and Architecture
+
+### Model Architecture:
+
+The CRNN (Convolutional Recurrent Neural Network) model consists of:
+
+1. **Convolutional Backbone:** ResNet-style CNN with residual connections for robust feature extraction
+2. **CBAM Attention:** Channel and spatial attention mechanisms for feature refinement
+3. **Bidirectional LSTM:** Captures temporal dependencies in CAPTCHA text sequences
+4. **Transformer Encoder:** Processes long-range dependencies for enhanced text recognition
+5. **CTC Loss:** Connectionist Temporal Classification for sequence-to-sequence learning
+
+### Model Performance:
+
+- **Character Accuracy:** 95.08% (individual character prediction accuracy)
+- **Sequence Accuracy:** 86.37% (entire CAPTCHA sequence prediction accuracy)
+- **Inference Time:** 30-100ms per image on modern CPUs
+- **Model Size:** 273MB (ONNX format, CPU-optimized)
+- **Input:** 64×256 pixel images (RGB)
+- **Output:** 62-character charset (0-9, A-Z, a-z)
+
+### Deployment:
+
+- **Framework:** ONNX Runtime 1.17.1 (CPU-based inference)
+- **No GPU Required:** Fully optimized for CPU performance
+- **Cross-Platform:** Runs on Windows, macOS, and Linux
+- **Offline Capable:** Works completely offline after initial setup
+- **Lightweight:** No PyTorch or TensorFlow required for inference
+
+## Development and Customization
+
+### Adding New Features:
+
+To add new features to the desktop application:
+
+1. **New Tab:** Create a new file in `ui/tabs/` and implement the tab class
+2. **New Widget:** Create a new file in `ui/widgets/` for custom widgets
+3. **New Utility:** Add functions to `utils/` modules
+4. **Styling:** Update `ui/styles/fallout_theme.qss` for visual changes
+
+### Modifying the Model:
+
+To use a different ONNX model:
+
+1. Replace `resources/models/best_model.onnx` with your model
+2. Update `resources/config/model_config.json` with new model parameters
+3. Ensure input/output shapes match the model expectations
+4. Update charset if different from 62 characters
+
+### Building Executables:
+
+To create a standalone executable (Windows):
+
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed main.py
+```
+
+The executable will be created in the `dist/` directory.
+
+## Documentation Files
 
 ### `InstallationAndSetup.md`:
-Comprehensive installation and setup guide:
-- Prerequisites and required software.
-- Automated and manual setup instructions.
-- Running the application.
-- Troubleshooting common issues.
+Comprehensive installation guide:
+- Prerequisites for desktop application
+- Automated and manual setup instructions
+- Running the desktop application
+- Troubleshooting common issues
+- Environment configuration
 
 ### `Usage.md`:
-User guide for the web application:
-- How to navigate the interface.
-- How to upload images and get predictions.
-- Understanding the results.
-- Tips for best results.
+User guide for desktop application:
+- Desktop application usage
+- Tab navigation and features
+- Tips and best practices
+- Troubleshooting
 
 ### `API.md`:
-Backend API documentation:
-- Endpoint specifications.
-- Request/response formats.
-- Example requests using curl and JavaScript.
-- Error codes and messages.
+Historical REST API documentation (for reference)
 
 ### `CodeBaseIndex.md`:
-This file - complete codebase structure and file descriptions.
+This file - complete codebase structure and descriptions
+
+### `README.md`:
+Project README with:
+- Project overview and features
+- Model architecture details
+- Performance metrics
+- Quick start guide
+- Links to detailed documentation
 
 ## PowerShell Scripts:
 
 ### `setup.ps1`:
 Automated setup script:
-- Checks for Python and Node.js installation.
-- Creates Python virtual environment.
-- Installs backend dependencies.
-- Installs frontend dependencies.
-- Exports ONNX model if needed.
+- Checks for Python installation
+- Creates Python virtual environment
+- Installs dependencies
+- Verifies ONNX model
+- Verifies resources
 
 ### `start.ps1`:
 Application startup script:
-- Starts Flask backend server in background.
-- Starts Vite development server in background.
-- Displays access URLs.
-- Provides instructions for stopping servers.
+- Activates virtual environment
+- Launches desktop application
+- Displays status messages
 
-## Reference Files:
+## Technology Stack
 
-### `README.md`:
-Project README with:
-- Project overview and features.
-- Model architecture details.
-- Performance metrics.
-- Quick start guide.
-- Links to detailed documentation and resources.
+### Desktop Application
+- **Framework:** PySide6 6.6.1 (Qt for Python)
+- **Inference:** ONNX Runtime 1.17.1 (CPU-optimized)
+- **Image Processing:** Pillow 10.1.0, NumPy 1.24.3
+- **Styling:** QSS (Qt Style Sheets) with Fallout theme
+- **Python:** 3.11 (recommended) or 3.8+
 
-## Technology Stack:
+## Key Design Decisions
 
-### Frontend:
-- **Framework:** React 19 with TypeScript.
-- **Build Tool:** Vite 7.
-- **Styling:** Tailwind CSS 3.
-- **Icons:** Lucide React.
-- **HTTP Client:** Axios.
-- **Utilities:** clsx, tailwind-merge, class-variance-authority.
+1. **ONNX Runtime for CPU Inference:**
+   - No GPU requirement (works on any CPU)
+   - Faster inference than PyTorch (30-100ms per image)
+   - Smaller deployment footprint (273MB model)
+   - Cross-platform compatibility
 
-### Backend:
-- **Framework:** Flask 3.0.0.
-- **Inference:** ONNX Runtime 1.17.1 (CPU-optimized, no GPU required).
-- **Image Processing:** Pillow 10.1.0, NumPy 1.24.3.
-- **Deep Learning:** PyTorch 2.1 (for model export only, not required for inference).
-- **CORS:** Flask-CORS 4.0.0 for frontend communication.
+2. **Desktop Application Focus:**
+   - Native GUI for performance and offline capability
+   - Standalone executable for easy distribution
+   - Direct ONNX model access (no API required)
 
-### Development Tools:
-- **TypeScript:** Type-safe JavaScript.
-- **ESLint:** Code linting.
-- **PostCSS:** CSS processing.
-- **Autoprefixer:** CSS vendor prefixing.
+3. **Fallout-Themed Design:**
+   - Green (#00FF41), purple (#9D4EDD), blue (#0096FF) color scheme
+   - Courier New monospace font for retro aesthetic
+   - Enhanced interactive elements with hover effects
 
-## Key Design Decisions:
+4. **Modular Architecture:**
+   - Clear separation between core inference, UI, and utilities
+   - Easy to extend with new tabs and widgets
+   - Reusable components for consistent design
 
-1. **ONNX Runtime for CPU Inference:** Chosen for:
-   - No GPU requirement (works on any CPU).
-   - Faster inference than PyTorch (30-100ms per image).
-   - Smaller deployment footprint (273MB model).
-   - Cross-platform compatibility.
+5. **Threading for Desktop:**
+   - Non-blocking inference using QThread to prevent UI freezing
+   - Responsive interface during model processing
 
-2. **Single-Page Application:** All sections on one scrollable page for better user experience.
+## Development Workflow
 
-3. **Dark/Light Theme:** Implemented using Tailwind's dark mode with class-based toggling and retro color scheme.
+### Desktop Application Development
+```bash
+.\setup.ps1  # First time only
+.\start.ps1  # Launch application
+```
+- PySide6 for native GUI
+- Direct ONNX model access (no API required)
+- QSS stylesheets for theming
 
-4. **Retro/Vintage Design:** Amber color palette (amber-50 to amber-950), Georgia serif font, 4px borders, box shadows, no rounded corners for authentic vintage aesthetic.
+### Building for Production
 
-5. **Responsive Design:** Mobile-first approach with Tailwind's responsive utilities.
-
-6. **Modular Architecture:** Clear separation between frontend and backend with RESTful API.
-
-## Development Workflow:
-
-1. **Frontend Development:**
-   - Run `npm run dev` in the frontend directory.
-   - Vite provides hot module replacement for instant updates.
-   - Access at http://localhost:5173.
-
-2. **Backend Development:**
-   - Run `python app.py` in the backend directory.
-   - Flask runs in debug mode for auto-reload.
-   - Access API at http://localhost:5000.
-
-3. **Building for Production:**
-   - Frontend: `npm run build` creates optimized bundle in `dist/`.
-   - Backend: Deploy Flask app with production WSGI server (e.g., Gunicorn).
+**Desktop:**
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed main.py
+# Creates standalone executable in dist/
+```
 
 ## Future Enhancements:
 
 Potential areas for expansion:
-- Batch image processing.
-- Model performance analytics dashboard.
-- User authentication and history.
-- Additional export formats (TensorFlow.js, TFLite).
-- Real-time webcam capture for CAPTCHA solving.
+- Batch image processing
+- Model performance analytics dashboard
+- Real-time webcam capture for CAPTCHA solving
+- Additional export formats for predictions
+- Model fine-tuning interface
 

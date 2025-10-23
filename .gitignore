@@ -57,6 +57,7 @@ Thumbs.db
 dist/
 build/
 *.tsbuildinfo
+*.spec
 
 # Temporary files
 *.tmp
@@ -65,4 +66,6 @@ build/
 
 # Large model files (use Git LFS or download separately)
 backend/models/best_model.onnx
+resources/models/best_model.onnx
+*.onnx
 
