@@ -152,9 +152,7 @@ The model is a custom-built Convolutional Recurrent Neural Network (CRNN) that i
 - Charset: 62 characters (0-9, A-Z, a-z).
 - Model Size: ~273MB (ONNX format).
 
-![Model Architecture Part 1](visuals/ModelArchitectureSection1.png)
-
-The architecture section displays the CRNN model components in a retro-styled card layout, showing the convolutional backbone, CBAM attention mechanism, Bi-LSTM, and Transformer Encoder with their respective descriptions.
+The architecture section displays the CRNN model components in a retro-styled card layout, showing the convolutional backbone, CBAM attention mechanism, Bi-LSTM, and Transformer Encoder with their respective descriptions. See the Model Architecture screenshot above for a visual representation.
 
 -----
 
@@ -175,9 +173,7 @@ The model achieves high accuracy on both the validation and unseen test sets.
 | Sequence Accuracy  |     86.4%      | 86.37%   |
 | Character Accuracy |     95.1%      | 95.08%   |
 
-![About Section Part 2](visuals/AboutTheProjectSection2.png)
-
-The performance metrics table displays the model's accuracy on validation and test sets, showing both sequence accuracy and character accuracy metrics.
+The performance metrics table displays the model's accuracy on validation and test sets, showing both sequence accuracy and character accuracy metrics. See the About Tab screenshots above for visual representations of the performance metrics.
 
 ---
 
